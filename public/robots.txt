@@ -1,12 +1,12 @@
 # PagodaPDF Robots.txt
-# https://nguyenthaidinh.github.io/Pagoda/
+# https://pagoda.liotnu.com/
 
 # Allow all crawlers
 User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://nguyenthaidinh.github.io/Pagoda/sitemap.xml
+Sitemap: https://pagoda.liotnu.com/sitemap.xml
 
 # Disallow internal/system paths
 Disallow: /api/

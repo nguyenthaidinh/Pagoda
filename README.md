@@ -56,15 +56,15 @@ npm run build
 Sao chép `.env.example` thành tệp môi trường phù hợp với nền tảng triển khai và thiết lập ít nhất:
 
 ```dotenv
-SITE_URL=https://ten-mien-cua-ban.example
+SITE_URL=https://pagoda.liotnu.com
 VITE_BRAND_NAME=PagodaPDF
 VITE_BRAND_LOGO=images/pagoda-logo.svg
 ```
 
-Với GitHub Pages, workflow có sẵn dùng repository variables `BASE_URL` và `SITE_URL`. Nếu không đặt, cấu hình mặc định dành cho repo này là:
+Với VPS và tên miền chính thức, cấu hình production của repo này là:
 
-- `BASE_URL=/Pagoda/`
-- `SITE_URL=https://nguyenthaidinh.github.io/Pagoda`
+- `BASE_URL=/`
+- `SITE_URL=https://pagoda.liotnu.com`
 
 Hãy thay `SITE_URL` khi sử dụng tên miền riêng. Không commit mật khẩu, khóa API hoặc file `.env.*` chứa dữ liệu thật.
 
@@ -93,4 +93,3 @@ Các thông báo bản quyền và giấy phép của dự án gốc, dependency
 
 - GitHub Issues: https://github.com/nguyenthaidinh/Pagoda/issues
 - Email: ntdinh16124@gmail.com
-

@@ -64,10 +64,8 @@ ENV VITE_FOOTER_TEXT=$VITE_FOOTER_TEXT
 ARG DISABLE_TOOLS
 ENV DISABLE_TOOLS=$DISABLE_TOOLS
 
-# Public-facing canonical site URL. Defaults to the official site so self-hosters
-# consolidate SEO signals back to bentopdf.com. Override with --build-arg
-# SITE_URL=https://your-domain.example to claim canonical for your own deployment.
-ARG SITE_URL=https://www.bentopdf.com
+# Public-facing canonical site URL used by SEO metadata and the sitemap.
+ARG SITE_URL=https://pagoda.liotnu.com
 ENV SITE_URL=$SITE_URL
 
 ENV NODE_OPTIONS="--max-old-space-size=3072"

@@ -142,8 +142,8 @@ AddType image/webp .webp
 # 5. REDIRECTS & ROUTING
 # ============================================
 # Canonical WWW (update domain as needed)
-RewriteCond %{HTTP_HOST} ^bentopdf\.com [NC]
-RewriteRule ^(.*)$ https://www.bentopdf.com/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^pagoda\.liotnu\.com [NC]
+RewriteRule ^(.*)$ https://pagoda.liotnu.com/$1 [L,R=301]
 
 # Force HTTPS
 RewriteCond %{HTTPS} off

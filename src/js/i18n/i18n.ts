@@ -17,7 +17,7 @@ function rebrandText(value: string): string {
     window.location.hostname &&
     window.location.hostname !== 'localhost'
       ? window.location.hostname
-      : 'pagodapdf.example';
+      : 'pagoda.liotnu.com';
 
   return value
     .replace(/https:\/\/www\.bentopdf\.com/g, () => `https://${host}`)

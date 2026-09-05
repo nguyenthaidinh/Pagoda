@@ -12,8 +12,7 @@ Use this checklist before the first full source push to
 - [ ] Confirm that `ntdinh16124@gmail.com` is the intended public security and
       support address.
 - [ ] Run `npm ci`, `npm run lint`, `npm run test:run`, and `npm run build`.
-- [ ] Enable GitHub Pages with **GitHub Actions** as the source if the site will
-      use `https://nguyenthaidinh.github.io/Pagoda/`.
+- [ ] Configure DNS and HTTPS for `https://pagoda.liotnu.com/`.
 - [ ] Review repository Actions permissions and enable CodeQL/secret scanning
       where available.
 - [ ] Confirm that no real PDF, certificate, private key, token, or user data is
@@ -21,8 +20,8 @@ Use this checklist before the first full source push to
 
 ## Deployment choices
 
-- [ ] Replace the GitHub Pages URL in `SITE_URL`, workflows, `robots.txt`, docs,
-      and Cloudflare allowlists if a custom domain is selected.
+- [ ] Keep `SITE_URL`, `robots.txt`, docs, and Cloudflare allowlists synchronized
+      with the production domain.
 - [ ] Configure Cloudflare Worker secrets and deploy the workers only if the
       related tools need them.
 - [ ] Publish a container image only to a registry controlled by this project;

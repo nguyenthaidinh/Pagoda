@@ -1,11 +1,11 @@
 import { defineConfig } from 'vitepress'
 
-const SITE_URL = 'https://nguyenthaidinh.github.io/Pagoda'
+const SITE_URL = 'https://pagoda.liotnu.com'
 
 export default defineConfig({
     title: "PagodaPDF Docs",
     description: "Documentation for the PagodaPDF open-source PDF toolkit",
-    base: '/Pagoda/docs/',
+    base: '/docs/',
     cleanUrls: true,
 
     transformPageData(pageData) {

@@ -5,6 +5,8 @@ services:
       dockerfile: Dockerfile
       args:
         SIMPLE_MODE: false # false for default mode, true for simple mode
+        SITE_URL: ${SITE_URL:-https://pagoda.liotnu.com}
+        BASE_URL: ${BASE_URL:-/}
     container_name: pagodapdf-dev
     ports:
       - '8080:8080'

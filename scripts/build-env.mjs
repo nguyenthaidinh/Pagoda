@@ -16,7 +16,7 @@ export const BRAND_SOCIAL_LINKS = (env.VITE_BRAND_SOCIAL_LINKS || '')
   .filter(Boolean);
 
 export const SITE_URL = (
-  env.SITE_URL || 'https://nguyenthaidinh.github.io/Pagoda'
+  env.SITE_URL || 'https://pagoda.liotnu.com'
 ).replace(/\/+$/, '');
 export const SITE_HOST = new URL(SITE_URL).hostname;
 

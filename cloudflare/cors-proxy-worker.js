@@ -28,7 +28,7 @@ const ALLOWED_TSA_HOSTS = new Set([
   'tsa.mesign.com',
 ]);
 
-const ALLOWED_ORIGINS = ['https://nguyenthaidinh.github.io'];
+const ALLOWED_ORIGINS = ['https://pagoda.liotnu.com'];
 
 const SAFE_CONTENT_TYPES = [
   'application/x-x509-ca-cert',

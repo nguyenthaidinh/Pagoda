@@ -18,7 +18,7 @@
  * - CPDF_SOURCE: Base URL for CoherentPDF files (e.g., https://cdn.example.com/cpdf)
  */
 
-const ALLOWED_ORIGINS = ['https://nguyenthaidinh.github.io'];
+const ALLOWED_ORIGINS = ['https://pagoda.liotnu.com'];
 
 const MAX_FILE_SIZE_BYTES = 100 * 1024 * 1024;
 

@@ -9,15 +9,14 @@ npm run build
 ```
 
 Set `SITE_URL` to the public origin and `BASE_URL` to the deployment path before
-building. For this repository's GitHub Pages URL:
+building. For the PagodaPDF production domain:
 
 ```text
-SITE_URL=https://nguyenthaidinh.github.io/Pagoda
-BASE_URL=/Pagoda/
+SITE_URL=https://pagoda.liotnu.com
+BASE_URL=/
 ```
 
-The workflow `.github/workflows/static.yml` uses these defaults. Enable GitHub
-Pages with **GitHub Actions** as its source before the first deployment.
+The production build can be served from the root of the configured domain.
 
 Do not upload source files, `.env` files, `node_modules`, test output, or temporary
 PDFs to the web root. Serve only the generated `dist/` directory and preserve the

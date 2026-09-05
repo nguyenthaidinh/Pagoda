@@ -5,6 +5,8 @@ services:
       dockerfile: Dockerfile
       args:
         SIMPLE_MODE: false
+        SITE_URL: ${SITE_URL:-https://pagoda.liotnu.com}
+        BASE_URL: ${BASE_URL:-/}
     image: pagodapdf:local
     container_name: pagodapdf
     restart: unless-stopped
