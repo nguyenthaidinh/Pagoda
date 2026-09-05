@@ -1,0 +1,15 @@
+services:
+  pagodapdf:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SIMPLE_MODE: false
+    image: pagodapdf:local
+    container_name: pagodapdf
+    restart: unless-stopped
+    ports:
+      - '8080:8080'
+    # For IPv4-only environments
+    #environment:
+    #  - DISABLE_IPV6=true

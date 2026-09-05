@@ -1,0 +1,19 @@
+import { ssrRenderAttrs } from "vue/server-renderer";
+import { useSSRContext } from "vue";
+import { _ as _export_sfc } from "./plugin-vue_export-helper.1tPrXgE0.js";
+const __pageData = JSON.parse('{"title":"Delete Pages","description":"Remove specific pages from a PDF by page number, range, or visual thumbnail selection.","frontmatter":{"title":"Delete Pages","description":"Remove specific pages from a PDF by page number, range, or visual thumbnail selection.","head":[["link",{"rel":"canonical","href":"https://nguyenthaidinh.github.io/Pagoda/docs/tools/delete-pages"}]]},"headers":[],"relativePath":"tools/delete-pages.md","filePath":"tools/delete-pages.md"}');
+const _sfc_main = { name: "tools/delete-pages.md" };
+function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  _push(`<div${ssrRenderAttrs(_attrs)}><h1 id="delete-pages" tabindex="-1">Delete Pages <a class="header-anchor" href="#delete-pages" aria-label="Permalink to &quot;Delete Pages&quot;">​</a></h1><p>Remove unwanted pages from a PDF document. Specify pages to delete by typing page numbers or ranges, or click directly on page thumbnails to mark them for removal.</p><h2 id="how-it-works" tabindex="-1">How It Works <a class="header-anchor" href="#how-it-works" aria-label="Permalink to &quot;How It Works&quot;">​</a></h2><ol><li>Upload a PDF file. The tool renders thumbnail previews of every page.</li><li>Enter the pages to delete in the text field using range syntax (e.g., <code>2, 5-8</code>), or click thumbnails to toggle them.</li><li>Marked pages are visually highlighted so you can confirm your selection.</li><li>Click the process button. A new PDF is created with the selected pages removed.</li></ol><h2 id="features" tabindex="-1">Features <a class="header-anchor" href="#features" aria-label="Permalink to &quot;Features&quot;">​</a></h2><ul><li>Text-based page selection with range syntax (<code>2, 5-8, 12</code>)</li><li>Visual thumbnail grid for click-to-select deletion</li><li>Real-time preview highlighting of pages marked for deletion</li><li>Input validation against the actual page count</li><li>Keeps all non-deleted pages in their original order</li></ul><h2 id="use-cases" tabindex="-1">Use Cases <a class="header-anchor" href="#use-cases" aria-label="Permalink to &quot;Use Cases&quot;">​</a></h2><ul><li>Removing blank or filler pages from a scanned document</li><li>Stripping cover pages or appendices before sharing a document</li><li>Cleaning up draft pages that were accidentally left in a final PDF</li><li>Removing pages with sensitive information before distribution</li></ul><h2 id="tips" tabindex="-1">Tips <a class="header-anchor" href="#tips" aria-label="Permalink to &quot;Tips&quot;">​</a></h2><ul><li>Deleting pages does not affect the remaining pages&#39; content or formatting. The output is a faithful copy of the original minus the removed pages.</li><li>If you want to keep only specific pages rather than removing specific ones, <a href="./extract-pages">Extract Pages</a> is the better fit.</li><li>The thumbnail view loads lazily, so large documents stay responsive.</li></ul><h2 id="related-tools" tabindex="-1">Related Tools <a class="header-anchor" href="#related-tools" aria-label="Permalink to &quot;Related Tools&quot;">​</a></h2><ul><li><a href="./extract-pages">Extract Pages</a></li><li><a href="./organize-pdf">Organize &amp; Duplicate</a></li><li><a href="./split-pdf">Split PDF</a></li></ul></div>`);
+}
+const _sfc_setup = _sfc_main.setup;
+_sfc_main.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("tools/delete-pages.md");
+  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
+};
+const deletePages = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
+export {
+  __pageData,
+  deletePages as default
+};

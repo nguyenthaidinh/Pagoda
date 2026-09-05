@@ -1,0 +1,294 @@
+import { showAlert } from '../ui.js';
+import { downloadFile, formatBytes } from '../utils/helpers.js';
+import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
+import { PDFDocument } from 'pdf-lib';
+import { flattenAnnotations } from '../utils/flatten-annotations.js';
+import { icons, createIcons } from 'lucide';
+import JSZip from 'jszip';
+import { deduplicateFileName } from '../utils/deduplicate-filename.js';
+import { FlattenPdfState } from '@/types';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
+import { t } from '../i18n/i18n.js';
+import {
+  filterPdfFiles,
+  pdfOutputName,
+  securityText,
+} from '../utils/security-pdf-page.js';
+import { goToLocalizedTools } from '../utils/localized-navigation.js';
+
+const pageState: FlattenPdfState = {
+  files: [],
+};
+
+function flattenFormsInDoc(pdfDoc: PDFDocument) {
+  const form = pdfDoc.getForm();
+  form.flatten();
+}
+
+function resetState() {
+  pageState.files = [];
+
+  const fileDisplayArea = document.getElementById('file-display-area');
+  if (fileDisplayArea) fileDisplayArea.innerHTML = '';
+
+  const toolOptions = document.getElementById('tool-options');
+  if (toolOptions) toolOptions.classList.add('hidden');
+
+  const fileControls = document.getElementById('file-controls');
+  if (fileControls) fileControls.classList.add('hidden');
+
+  const fileInput = document.getElementById('file-input') as HTMLInputElement;
+  if (fileInput) fileInput.value = '';
+}
+
+async function updateUI() {
+  const fileDisplayArea = document.getElementById('file-display-area');
+  const toolOptions = document.getElementById('tool-options');
+  const fileControls = document.getElementById('file-controls');
+
+  if (!fileDisplayArea) return;
+
+  fileDisplayArea.innerHTML = '';
+
+  if (pageState.files.length > 0) {
+    pageState.files.forEach((file, index) => {
+      const fileDiv = document.createElement('div');
+      fileDiv.className =
+        'flex items-center justify-between bg-gray-700 p-3 rounded-lg text-sm';
+
+      const infoContainer = document.createElement('div');
+      infoContainer.className = 'flex flex-col overflow-hidden';
+
+      const nameSpan = document.createElement('div');
+      nameSpan.className = 'truncate font-medium text-gray-200 text-sm mb-1';
+      nameSpan.textContent = file.name;
+
+      const metaSpan = document.createElement('div');
+      metaSpan.className = 'text-xs text-gray-400';
+      metaSpan.textContent = formatBytes(file.size);
+
+      infoContainer.append(nameSpan, metaSpan);
+
+      const removeBtn = document.createElement('button');
+      removeBtn.className =
+        'ml-4 text-red-400 hover:text-red-300 flex-shrink-0';
+      removeBtn.type = 'button';
+      removeBtn.title = securityText('removeFile');
+      removeBtn.setAttribute('aria-label', securityText('removeFile'));
+      removeBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
+      removeBtn.onclick = function () {
+        pageState.files.splice(index, 1);
+        updateUI();
+      };
+
+      fileDiv.append(infoContainer, removeBtn);
+      fileDisplayArea.appendChild(fileDiv);
+    });
+
+    createIcons({ icons });
+
+    if (toolOptions) toolOptions.classList.remove('hidden');
+    if (fileControls) fileControls.classList.remove('hidden');
+  } else {
+    if (toolOptions) toolOptions.classList.add('hidden');
+    if (fileControls) fileControls.classList.add('hidden');
+  }
+}
+
+function handleFileSelect(files: FileList | null) {
+  if (files && files.length > 0) {
+    const pdfFiles = filterPdfFiles(files);
+    if (pdfFiles.length > 0) {
+      pageState.files.push(...pdfFiles);
+      updateUI();
+    } else {
+      showAlert(
+        securityText('invalidFileTitle'),
+        securityText('invalidPdfMessage')
+      );
+    }
+  }
+}
+
+async function flattenPdf() {
+  if (pageState.files.length === 0) {
+    showAlert(securityText('noFilesTitle'), securityText('noFilesMessage'));
+    return;
+  }
+
+  const loaderModal = document.getElementById('loader-modal');
+  const loaderText = document.getElementById('loader-text');
+
+  pageState.files = await batchDecryptIfNeeded(pageState.files);
+  if (pageState.files.length === 0) return;
+
+  try {
+    if (pageState.files.length === 1) {
+      if (loaderModal) loaderModal.classList.remove('hidden');
+      if (loaderText) loaderText.textContent = t('tools:flattenPdf.flattening');
+
+      const file = pageState.files[0];
+      const arrayBuffer = await file.arrayBuffer();
+      const pdfDoc = await loadPdfDocument(arrayBuffer);
+
+      try {
+        flattenFormsInDoc(pdfDoc);
+      } catch (e: unknown) {
+        const msg = e instanceof Error ? e.message : String(e);
+        if (!msg.includes('getForm')) {
+          throw e;
+        }
+      }
+
+      try {
+        flattenAnnotations(pdfDoc);
+      } catch (e: unknown) {
+        const msg = e instanceof Error ? e.message : String(e);
+        console.warn('Could not flatten annotations:', msg);
+      }
+
+      const newPdfBytes = await pdfDoc.save();
+      downloadFile(
+        new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
+        pdfOutputName(file.name, 'flattened')
+      );
+      if (loaderModal) loaderModal.classList.add('hidden');
+      showAlert(
+        securityText('successTitle'),
+        t('tools:flattenPdf.successMessage'),
+        'success',
+        resetState
+      );
+    } else {
+      if (loaderModal) loaderModal.classList.remove('hidden');
+      if (loaderText)
+        loaderText.textContent = t('tools:flattenPdf.flatteningMultiple');
+
+      const zip = new JSZip();
+      const usedNames = new Set<string>();
+      let processedCount = 0;
+
+      for (let i = 0; i < pageState.files.length; i++) {
+        const file = pageState.files[i];
+        if (loaderText)
+          loaderText.textContent = t('tools:flattenPdf.flatteningProgress', {
+            current: i + 1,
+            total: pageState.files.length,
+            name: file.name,
+          });
+
+        try {
+          const arrayBuffer = await file.arrayBuffer();
+          const pdfDoc = await loadPdfDocument(arrayBuffer);
+
+          try {
+            flattenFormsInDoc(pdfDoc);
+          } catch (e: unknown) {
+            const msg = e instanceof Error ? e.message : String(e);
+            if (!msg.includes('getForm')) {
+              throw e;
+            }
+          }
+
+          try {
+            flattenAnnotations(pdfDoc);
+          } catch (e: unknown) {
+            const msg = e instanceof Error ? e.message : String(e);
+            console.warn('Could not flatten annotations:', msg);
+          }
+
+          const flattenedBytes = await pdfDoc.save();
+          const zipEntryName = deduplicateFileName(
+            pdfOutputName(file.name, 'flattened'),
+            usedNames
+          );
+          zip.file(zipEntryName, flattenedBytes);
+          processedCount++;
+        } catch (e) {
+          console.error(`Error processing ${file.name}:`, e);
+        }
+      }
+
+      if (processedCount > 0) {
+        const zipBlob = await zip.generateAsync({ type: 'blob' });
+        downloadFile(zipBlob, 'flattened_pdfs.zip');
+        showAlert(
+          securityText('successTitle'),
+          t('tools:flattenPdf.batchSuccess', { count: processedCount }),
+          'success',
+          () => {
+            resetState();
+          }
+        );
+      } else {
+        showAlert(
+          securityText('errorTitle'),
+          securityText('noneProcessedMessage')
+        );
+      }
+      if (loaderModal) loaderModal.classList.add('hidden');
+    }
+  } catch (e: unknown) {
+    console.error(e);
+    if (loaderModal) loaderModal.classList.add('hidden');
+    const errorMessage =
+      e instanceof Error ? e.message : 'An unexpected error occurred.';
+    showAlert(securityText('errorTitle'), errorMessage);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  const fileInput = document.getElementById('file-input') as HTMLInputElement;
+  const dropZone = document.getElementById('drop-zone');
+  const processBtn = document.getElementById('process-btn');
+  const addMoreBtn = document.getElementById('add-more-btn');
+  const clearFilesBtn = document.getElementById('clear-files-btn');
+  const backBtn = document.getElementById('back-to-tools');
+
+  if (backBtn) {
+    backBtn.addEventListener('click', goToLocalizedTools);
+  }
+
+  if (fileInput && dropZone) {
+    fileInput.addEventListener('change', function (e) {
+      handleFileSelect((e.target as HTMLInputElement).files);
+    });
+
+    dropZone.addEventListener('dragover', function (e) {
+      e.preventDefault();
+      dropZone.classList.add('bg-gray-700');
+    });
+
+    dropZone.addEventListener('dragleave', function (e) {
+      e.preventDefault();
+      dropZone.classList.remove('bg-gray-700');
+    });
+
+    dropZone.addEventListener('drop', function (e) {
+      e.preventDefault();
+      dropZone.classList.remove('bg-gray-700');
+      handleFileSelect(e.dataTransfer?.files);
+    });
+
+    fileInput.addEventListener('click', function () {
+      fileInput.value = '';
+    });
+  }
+
+  if (processBtn) {
+    processBtn.addEventListener('click', flattenPdf);
+  }
+
+  if (addMoreBtn) {
+    addMoreBtn.addEventListener('click', function () {
+      fileInput.value = '';
+      fileInput.click();
+    });
+  }
+
+  if (clearFilesBtn) {
+    clearFilesBtn.addEventListener('click', function () {
+      resetState();
+    });
+  }
+});

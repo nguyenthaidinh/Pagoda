@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="site:pages.terms.browserTitle">Terms - PagodaPDF</title>
+    <meta
+      name="description"
+      content="Terms for using the PagodaPDF browser-based PDF toolkit."
+    />
+    <meta name="author" content="PagodaPDF" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://pagodapdf.example/terms" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pagodapdf.example/terms" />
+    <meta property="og:title" content="Terms - PagodaPDF" />
+    <meta property="og:description" content="Terms for using PagodaPDF." />
+    <meta property="og:site_name" content="PagodaPDF" />
+    <link href="/src/css/styles.css" rel="stylesheet" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="/images/pagoda-logo.svg" />
+  </head>
+  <body class="antialiased bg-gray-900 text-gray-300">
+    {{> navbar }}
+
+    <main class="container mx-auto px-4 py-12 md:py-16">
+      <section class="max-w-4xl mx-auto prose prose-invert">
+        <h1 data-i18n="site:pages.terms.title">Terms</h1>
+        <p data-i18n="site:pages.terms.updated">
+          Last updated: September 2, 2026
+        </p>
+
+        <h2 data-i18n="site:pages.terms.useTitle">Use of the Service</h2>
+        <p data-i18n="site:pages.terms.useDescription">
+          PagodaPDF provides browser-based PDF tools. You are responsible for
+          the files you choose to process and for checking the output before
+          relying on it.
+        </p>
+
+        <h2 data-i18n="site:pages.terms.warrantyTitle">No Warranty</h2>
+        <p data-i18n="site:pages.terms.warrantyDescription">
+          PagodaPDF is provided as open source software without warranties, to
+          the fullest extent permitted by the AGPL-3.0 license and applicable
+          law.
+        </p>
+
+        <h2 data-i18n="site:pages.terms.thirdPartyTitle">
+          Third-Party Components
+        </h2>
+        <p data-i18n="site:pages.terms.thirdPartyDescription">
+          The app uses third-party libraries and runtime assets. Their license
+          notices remain part of the project and should be reviewed before
+          redistribution.
+        </p>
+
+        <h2 data-i18n="site:pages.terms.sourceTitle">Source Availability</h2>
+        <p data-i18n="site:pages.terms.sourceDescription">
+          If you modify PagodaPDF and make it available over a network, you must
+          comply with AGPL-3.0 source availability requirements.
+        </p>
+      </section>
+    </main>
+
+    {{> footer }}
+    <script type="module" src="/src/js/utils/lucide-init.ts"></script>
+    <script type="module" src="/src/js/mobileMenu.ts"></script>
+    <script type="module" src="/src/js/main.ts"></script>
+  </body>
+</html>

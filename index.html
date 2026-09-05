@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title data-i18n="site:home.browserTitle">PagodaPDF - PDF Tools</title>
+    <meta name="title" content="PagodaPDF - PDF Tools" />
+    <meta
+      name="description"
+      content="PagodaPDF is a browser-based PDF toolkit for merging, splitting, compressing, converting, and editing documents."
+    />
+    <meta name="author" content="PagodaPDF" />
+    <meta name="theme-color" content="#38bdf8" />
+
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="PagodaPDF" />
+
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="/images/pagoda-logo.svg" />
+
+    <link href="src/css/styles.css" rel="stylesheet" />
+  </head>
+
+  <body class="pagoda-shell antialiased">
+    {{> navbar }}
+
+    <main id="app" class="min-h-screen container mx-auto p-4 md:p-8">
+      <section id="tools-header" class="hero-banner-section mb-10 pt-2">
+        <div
+          class="hero-banner-card relative overflow-hidden rounded-3xl p-6 md:p-10 text-center border border-sky-200/70 bg-gradient-to-b from-white via-sky-50/50 to-white shadow-xl shadow-sky-900/5"
+        >
+          <!-- Ambient Decorative Glows -->
+          <div
+            class="absolute -top-24 left-1/2 -translate-x-1/2 w-[30rem] h-[30rem] bg-gradient-to-tr from-sky-400/20 to-indigo-400/15 blur-3xl rounded-full pointer-events-none"
+          ></div>
+          <div
+            class="absolute -bottom-28 -right-20 w-80 h-80 bg-sky-300/15 blur-3xl rounded-full pointer-events-none"
+          ></div>
+
+          <!-- Eyebrow Badge -->
+          <div
+            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-100/80 border border-sky-200 text-sky-800 text-xs md:text-sm font-semibold mb-4 shadow-xs backdrop-blur-md"
+          >
+            <span class="flex h-2 w-2 relative">
+              <span
+                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"
+              ></span>
+              <span
+                class="relative inline-flex rounded-full h-2 w-2 bg-sky-500"
+              ></span>
+            </span>
+            <span data-i18n="hero.badge"
+              >✨ Bộ Công Cụ PDF Trực Tuyến An Toàn &amp; Nhanh Chóng</span
+            >
+          </div>
+
+          <!-- Main Commercial Title -->
+          <h1
+            class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-3.5 leading-tight"
+          >
+            <span data-i18n="simpleMode.title">Công cụ PDF</span>
+            <span
+              class="bg-gradient-to-r from-sky-600 via-indigo-600 to-sky-500 bg-clip-text text-transparent block sm:inline sm:ml-2"
+              data-i18n="site:home.headlineAccent"
+            >
+              Toàn Diện &amp; Siêu Tốc
+            </span>
+          </h1>
+
+          <!-- Subtitle -->
+          <p
+            class="max-w-2xl mx-auto text-base md:text-lg text-slate-600 font-medium mb-7 leading-relaxed"
+            data-i18n="simpleMode.subtitle"
+          >
+            Xử lý, nén, trộn, chuyển đổi và ký số tệp PDF trực tiếp trên trình
+            duyệt của bạn — 100% bảo mật dữ liệu, không cần tải file lên máy
+            chủ.
+          </p>
+
+          <!-- Commercial Search Command Bar -->
+          <div class="max-w-2xl mx-auto mb-5">
+            <div class="relative group">
+              <div
+                class="absolute -inset-1 bg-gradient-to-r from-sky-400 to-indigo-500 rounded-2xl blur-md opacity-30 group-hover:opacity-60 transition duration-300"
+              ></div>
+
+              <div
+                class="relative flex items-center bg-white/95 rounded-xl border border-sky-200 shadow-md p-1.5 pl-4 focus-within:ring-2 focus-within:ring-sky-500 focus-within:border-transparent transition-all"
+              >
+                <i
+                  data-lucide="search"
+                  class="w-5 h-5 text-sky-500 flex-shrink-0 mr-3"
+                ></i>
+                <input
+                  type="text"
+                  id="search-bar"
+                  class="w-full bg-transparent text-slate-900 placeholder-slate-400 text-sm md:text-base font-medium focus:outline-none py-2 pr-2"
+                  placeholder="Tìm kiếm công cụ (ví dụ: 'nén', 'trộn', 'ký tên', 'word')..."
+                  data-i18n-placeholder="tools.searchPlaceholder"
+                />
+                <div class="flex items-center gap-2 pr-1 flex-shrink-0">
+                  <kbd id="shortcut" class="hidden"></kbd>
+                  <button
+                    id="search-action-btn"
+                    type="button"
+                    class="inline-flex items-center gap-1.5 bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-700 hover:to-indigo-700 text-white font-semibold text-xs md:text-sm px-4 py-2 rounded-lg shadow-sm transition-all duration-200 hover:shadow-md cursor-pointer"
+                  >
+                    <i data-lucide="search" class="w-4 h-4"></i>
+                    <span data-i18n="site:home.searchAction">Tìm kiếm</span>
+                  </button>
+                  <button
+                    id="open-shortcuts-btn"
+                    class="p-2 hover:bg-sky-50 text-slate-400 hover:text-sky-600 rounded-lg transition-colors"
+                    title="Keyboard Shortcuts"
+                    data-i18n-title="settings.shortcuts"
+                    type="button"
+                  >
+                    <i data-lucide="settings" class="w-4.5 h-4.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Tool Suggestion Tags -->
+          <div
+            class="flex flex-wrap justify-center items-center gap-2 max-w-2xl mx-auto mb-7 text-xs md:text-sm"
+          >
+            <span
+              class="text-slate-500 font-semibold mr-1"
+              data-i18n="site:home.popularSuggestions"
+              >Gợi ý phổ biến:</span
+            >
+            <button
+              type="button"
+              class="quick-tag-btn"
+              data-search="Merge PDF"
+              data-i18n="site:home.quickMerge"
+            >
+              Gộp PDF
+            </button>
+            <button
+              type="button"
+              class="quick-tag-btn"
+              data-search="Compress PDF"
+              data-i18n="site:home.quickCompress"
+            >
+              Nén PDF
+            </button>
+            <button
+              type="button"
+              class="quick-tag-btn"
+              data-search="Sign PDF"
+              data-i18n="site:home.quickSign"
+            >
+              Ký PDF
+            </button>
+            <button
+              type="button"
+              class="quick-tag-btn"
+              data-search="Word"
+              data-i18n="site:home.quickWord"
+            >
+              PDF sang Word
+            </button>
+            <button
+              type="button"
+              class="quick-tag-btn"
+              data-search="Encrypt PDF"
+              data-i18n="site:home.quickSecurity"
+            >
+              Bảo mật
+            </button>
+          </div>
+
+          <!-- Commercial Trust Badges -->
+          <div
+            class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-6 border-t border-sky-100/90 max-w-3xl mx-auto text-left"
+          >
+            <div
+              class="flex items-center gap-3 p-3 rounded-xl bg-white/70 border border-sky-100/80 shadow-2xs backdrop-blur-xs hover:border-sky-200 transition-colors"
+            >
+              <div
+                class="p-2.5 rounded-lg bg-sky-100/90 text-sky-600 flex-shrink-0"
+              >
+                <i data-lucide="shield-check" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4
+                  class="text-xs font-bold text-slate-800"
+                  data-i18n="site:home.localTitle"
+                >
+                  100% Client-Side
+                </h4>
+                <p
+                  class="text-[11px] text-slate-500 font-medium"
+                  data-i18n="site:home.localDescription"
+                >
+                  Bảo mật tuyệt đối trên thiết bị
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="flex items-center gap-3 p-3 rounded-xl bg-white/70 border border-sky-100/80 shadow-2xs backdrop-blur-xs hover:border-sky-200 transition-colors"
+            >
+              <div
+                class="p-2.5 rounded-lg bg-indigo-100/90 text-indigo-600 flex-shrink-0"
+              >
+                <i data-lucide="zap" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4
+                  class="text-xs font-bold text-slate-800"
+                  data-i18n="site:home.speedTitle"
+                >
+                  Xử Lý Siêu Tốc
+                </h4>
+                <p
+                  class="text-[11px] text-slate-500 font-medium"
+                  data-i18n="site:home.speedDescription"
+                >
+                  Công nghệ WebAssembly
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="flex items-center gap-3 p-3 rounded-xl bg-white/70 border border-sky-100/80 shadow-2xs backdrop-blur-xs hover:border-sky-200 transition-colors"
+            >
+              <div
+                class="p-2.5 rounded-lg bg-emerald-100/90 text-emerald-600 flex-shrink-0"
+              >
+                <i data-lucide="sparkles" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4
+                  class="text-xs font-bold text-slate-800"
+                  data-i18n="site:home.freeTitle"
+                >
+                  Hoàn Toàn Miễn Phí
+                </h4>
+                <p
+                  class="text-[11px] text-slate-500 font-medium"
+                  data-i18n="site:home.freeDescription"
+                >
+                  Không giới hạn tính năng
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div id="grid-view">
+        <div
+          id="tool-grid"
+          class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6"
+        ></div>
+      </div>
+
+      <div
+        id="tool-interface"
+        class="hidden w-full max-w-4xl mx-auto bg-white rounded-xl shadow-2xl p-6 md:p-8 border border-sky-100"
+      >
+        <button
+          id="back-to-grid"
+          class="flex items-center gap-2 text-sky-700 hover:text-sky-900 mb-6 font-semibold"
+        >
+          <i data-lucide="arrow-left" class="cursor-pointer"></i>
+          <span class="cursor-pointer" data-i18n="tools.backToTools">
+            Back to Tools
+          </span>
+        </button>
+        <div id="tool-content"></div>
+      </div>
+
+      <div
+        id="loader-modal"
+        class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50"
+      >
+        <div
+          class="bg-white p-8 rounded-lg flex flex-col items-center gap-4 border border-sky-100 shadow-xl"
+        >
+          <div class="solid-spinner"></div>
+          <p
+            id="loader-text"
+            class="text-slate-950 text-lg font-medium"
+            data-i18n="loader.processing"
+          >
+            Processing...
+          </p>
+        </div>
+      </div>
+
+      <div
+        id="alert-modal"
+        class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4"
+      >
+        <div
+          class="bg-white max-w-sm w-full p-6 rounded-lg border border-sky-100 shadow-xl text-center"
+        >
+          <h3
+            id="alert-title"
+            class="text-xl font-bold text-slate-950 mb-2"
+            data-i18n="alert.title"
+          >
+            Alert
+          </h3>
+          <p id="alert-message" class="text-slate-600 mb-6 whitespace-pre-line">
+            This is an alert message.
+          </p>
+          <button
+            id="alert-ok"
+            class="btn bg-sky-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-sky-700"
+            data-i18n="alert.ok"
+          >
+            OK
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="preview-modal"
+        class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-40 p-4"
+      >
+        <div
+          class="bg-white text-slate-950 rounded-lg shadow-xl w-full max-w-4xl h-[90vh] flex flex-col"
+        >
+          <div
+            class="p-4 border-b border-sky-100 flex justify-between items-center"
+          >
+            <h3 class="text-xl font-bold" data-i18n="preview.title">
+              Document Preview
+            </h3>
+            <div class="flex gap-4">
+              <button
+                id="preview-download-btn"
+                class="btn bg-sky-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-sky-700"
+                data-i18n="preview.downloadAsPdf"
+              >
+                Download as PDF
+              </button>
+              <button
+                id="preview-close-btn"
+                class="btn bg-slate-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-slate-700"
+                data-i18n="preview.close"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+          <div id="preview-content" class="p-8 overflow-y-auto flex-grow"></div>
+        </div>
+      </div>
+
+      {{> settings-modal }} {{> warning-modal }}
+
+      <div id="signature-ghost" class="hidden"></div>
+
+      <button
+        id="scroll-to-top-btn"
+        class="fixed bottom-12 right-8 bg-sky-600 hover:bg-sky-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 translate-y-10 invisible z-40"
+        aria-label="Scroll to top"
+      >
+        <i data-lucide="arrow-up" class="w-6 h-6"></i>
+      </button>
+    </main>
+
+    {{> footer }}
+
+    <script type="module" src="src/js/utils/lucide-init.ts"></script>
+    <script type="module" src="src/js/main.ts"></script>
+    <script type="module" src="src/js/mobileMenu.ts"></script>
+    <script type="module" src="src/js/sw-register.ts"></script>
+  </body>
+</html>

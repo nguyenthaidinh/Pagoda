@@ -1,0 +1,19 @@
+import { ssrRenderAttrs } from "vue/server-renderer";
+import { useSSRContext } from "vue";
+import { _ as _export_sfc } from "./plugin-vue_export-helper.1tPrXgE0.js";
+const __pageData = JSON.parse('{"title":"PDF Booklet","description":"Rearrange PDF pages into booklet (saddle-stitch) order for folding and stapling into a physical booklet.","frontmatter":{"title":"PDF Booklet","description":"Rearrange PDF pages into booklet (saddle-stitch) order for folding and stapling into a physical booklet.","head":[["link",{"rel":"canonical","href":"https://nguyenthaidinh.github.io/Pagoda/docs/tools/pdf-booklet"}]]},"headers":[],"relativePath":"tools/pdf-booklet.md","filePath":"tools/pdf-booklet.md"}');
+const _sfc_main = { name: "tools/pdf-booklet.md" };
+function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  _push(`<div${ssrRenderAttrs(_attrs)}><h1 id="pdf-booklet" tabindex="-1">PDF Booklet <a class="header-anchor" href="#pdf-booklet" aria-label="Permalink to &quot;PDF Booklet&quot;">​</a></h1><p>Rearrange the pages of a PDF into booklet imposition order. When printed double-sided and folded in half, the pages will be in the correct reading sequence. This is the layout used for saddle-stitched booklets and zines.</p><h2 id="how-it-works" tabindex="-1">How It Works <a class="header-anchor" href="#how-it-works" aria-label="Permalink to &quot;How It Works&quot;">​</a></h2><ol><li>Upload a PDF file.</li><li>Configure booklet settings: output page size and orientation.</li><li>Click <strong>Generate Preview</strong> to see how pages will be arranged on each sheet.</li><li>Review the preview, which shows each physical sheet with its front and back page assignments.</li><li>Click <strong>Download</strong> to save the booklet-imposed PDF.</li></ol><h2 id="features" tabindex="-1">Features <a class="header-anchor" href="#features" aria-label="Permalink to &quot;Features&quot;">​</a></h2><ul><li>Automatic page reordering for saddle-stitch binding</li><li>Configurable output page size</li><li>Visual preview of the booklet layout before downloading</li><li>Handles odd page counts by inserting blanks where needed</li><li>Scales source pages to fit the booklet sheet size</li></ul><h2 id="use-cases" tabindex="-1">Use Cases <a class="header-anchor" href="#use-cases" aria-label="Permalink to &quot;Use Cases&quot;">​</a></h2><ul><li>Creating printable booklets or zines from a regular PDF</li><li>Preparing conference programs or event guides for in-house printing</li><li>Making folded greeting cards or small catalogs</li><li>Producing chapbooks or poetry collections for hand-binding</li></ul><h2 id="tips" tabindex="-1">Tips <a class="header-anchor" href="#tips" aria-label="Permalink to &quot;Tips&quot;">​</a></h2><ul><li>Your source PDF page count should ideally be a multiple of 4 for a clean booklet. If it is not, blank pages are added automatically to fill out the last sheet.</li><li>Print the output double-sided on your printer&#39;s &quot;flip on short edge&quot; setting, then fold all sheets together and staple at the spine.</li><li>For simply placing multiple pages on one sheet without booklet ordering, use <a href="./n-up-pdf">N-Up PDF</a> instead.</li></ul><h2 id="related-tools" tabindex="-1">Related Tools <a class="header-anchor" href="#related-tools" aria-label="Permalink to &quot;Related Tools&quot;">​</a></h2><ul><li><a href="./n-up-pdf">N-Up PDF</a></li><li><a href="./rotate-pdf">Rotate PDF</a></li><li><a href="./add-blank-page">Add Blank Page</a></li></ul></div>`);
+}
+const _sfc_setup = _sfc_main.setup;
+_sfc_main.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("tools/pdf-booklet.md");
+  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
+};
+const pdfBooklet = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
+export {
+  __pageData,
+  pdfBooklet as default
+};

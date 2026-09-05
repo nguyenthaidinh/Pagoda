@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title data-i18n="site:security.browserTitle">
+      PDF Security - Free Online PDF Security Tools | PagodaPDF
+    </title>
+    <meta
+      name="description"
+      content="Encrypt, decrypt, sign, and secure your PDFs with free online security tools. Password protection, digital signatures, permissions management. Privacy-first security in your browser."
+    />
+    <meta
+      name="keywords"
+      content="pdf security, encrypt pdf, decrypt pdf, sign pdf, remove restrictions, change permissions, sanitize pdf, flatten pdf, linearize pdf, remove metadata, pdf layers"
+    />
+    <meta name="author" content="PagodaPDF" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://pagodapdf.example/pdf-security" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pagodapdf.example/pdf-security" />
+    <meta
+      property="og:title"
+      content="PDF Security - Free Online PDF Security Tools | PagodaPDF"
+    />
+    <meta
+      property="og:description"
+      content="Encrypt, decrypt, sign, and secure your PDFs with free online security tools. Password protection, digital signatures, permissions management. Privacy-first security in your browser."
+    />
+    <meta
+      property="og:image"
+      content="https://pagodapdf.example/images/og-pdf-security.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="PagodaPDF" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PDF Security - Free Online Tools" />
+    <meta
+      name="twitter:description"
+      content="Encrypt, decrypt, sign, and secure your PDFs with free online security tools. Password protection, digital signatures, permissions management. Privacy-first security in your browser."
+    />
+    <meta
+      name="twitter:image"
+      content="https://pagodapdf.example/images/twitter-pdf-security.png"
+    />
+    <meta name="twitter:site" content="@PagodaPDF" />
+
+    <link href="/src/css/styles.css" rel="stylesheet" />
+    <script type="module">
+      import '@phosphor-icons/web/regular';
+    </script>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/images/pagoda-logo.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/images/favicon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="/images/favicon-512x512.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/images/apple-touch-icon.png"
+    />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  </head>
+
+  <body class="pagoda-shell antialiased text-slate-800">
+    <!-- Navigation -->
+    {{> navbar }}
+
+    <!-- Hero Section -->
+    <section class="container mx-auto px-4 pt-10 pb-8 md:pt-14 md:pb-12">
+      <div class="max-w-4xl mx-auto text-center">
+        <!-- Eyebrow Badge -->
+        <div
+          class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 border border-sky-200/80 shadow-2xs mb-6"
+        >
+          <span
+            class="flex h-2 w-2 rounded-full bg-sky-500 animate-pulse"
+          ></span>
+          <span
+            class="text-xs md:text-sm font-semibold text-sky-900 tracking-wide"
+            data-i18n="site:security.eyebrow"
+          >
+            Trung Tâm Bảo Mật & Mã Hóa PDF Trực Tuyến
+          </span>
+        </div>
+
+        <!-- Title -->
+        <h1
+          class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-slate-950 tracking-tight leading-tight mb-6"
+        >
+          <span data-i18n="site:security.title">Bảo Vệ & Mã Hóa PDF</span>
+          <span
+            class="bg-gradient-to-r from-sky-600 via-indigo-600 to-blue-700 bg-clip-text text-transparent"
+            data-i18n="site:security.titleAccent"
+            >An Toàn Tuyệt Đối</span
+          >
+        </h1>
+
+        <!-- Subtitle -->
+        <p
+          class="text-base md:text-lg lg:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed mb-8"
+        >
+          <span data-i18n="site:security.intro"
+            >Bộ công cụ mã hóa mật khẩu, ký số, phân quyền và làm sạch dữ liệu
+            nhạy cảm.</span
+          >
+          <strong
+            class="text-slate-800 font-semibold"
+            data-i18n="site:security.introStrong"
+            >100% xử lý an toàn tại chỗ trên trình duyệt (Client-side
+            WASM)</strong
+          >
+          <span data-i18n="site:security.introEnd"
+            >Tài liệu của bạn không bao giờ bị tải lên máy chủ.</span
+          >
+        </p>
+
+        <!-- Feature Pills -->
+        <div
+          class="flex flex-wrap justify-center items-center gap-3 text-xs md:text-sm text-slate-700 font-medium"
+        >
+          <span
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200"
+          >
+            <i class="ph ph-lock text-sky-600 text-base"></i>
+            <span data-i18n="site:security.aesBadge">Mã hóa AES-256 Bit</span>
+          </span>
+          <span
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200"
+          >
+            <i class="ph ph-shield-check text-indigo-600 text-base"></i>
+            <span data-i18n="site:security.noUploadBadge"
+              >Zero Server Upload</span
+            >
+          </span>
+          <span
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200"
+          >
+            <i class="ph ph-pen-nib text-blue-600 text-base"></i>
+            <span data-i18n="site:security.signatureBadge"
+              >Chữ ký số chuẩn PKCS#7</span
+            >
+          </span>
+          <span
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200"
+          >
+            <i class="ph ph-lightning text-amber-600 text-base"></i>
+            <span data-i18n="site:security.instantBadge">Xử lý tức thì</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools Grid Section -->
+    <section class="container mx-auto px-4 py-8 mb-8">
+      <div class="max-w-6xl mx-auto">
+        <div
+          class="flex items-center justify-between border-b border-sky-100 pb-4 mb-8"
+        >
+          <div>
+            <h2
+              class="text-2xl md:text-3xl font-extrabold text-slate-950 tracking-tight"
+              data-i18n="site:security.toolsTitle"
+            >
+              Tất Cả Công Cụ Bảo Mật PDF
+            </h2>
+            <p
+              class="text-slate-500 text-sm mt-1"
+              data-i18n="site:security.toolsDescription"
+            >
+              Chọn công cụ để mã hóa, gỡ mật khẩu hoặc làm sạch tệp PDF của bạn
+            </p>
+          </div>
+          <span
+            class="hidden md:inline-flex items-center gap-1 text-xs font-semibold text-sky-700 bg-sky-50 px-3 py-1.5 rounded-full border border-sky-200"
+            data-i18n="site:security.toolCount"
+          >
+            10 Công Cụ Khả Dụng
+          </span>
+        </div>
+
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5"
+        >
+          <a href="/encrypt-pdf.html" class="tool-card">
+            <div class="tool-icon-wrapper">
+              <i class="ph ph-lock text-sky-600"></i>
+            </div>
+            <h3 class="tool-title">Mã Hóa PDF</h3>
+            <p class="tool-subtitle">
+              Đặt mật khẩu & mã hóa AES-256 bảo vệ tệp
+            </p>
+          </a>
+
+          <a href="/decrypt-pdf.html" class="tool-card">
+            <div class="tool-icon-wrapper">
+              <i class="ph ph-lock-open text-sky-600"></i>
+            </div>
+            <h3 class="tool-title">Giải Mã PDF</h3>
+            <p class="tool-subtitle">Xóa mật khẩu & gỡ bỏ khóa bảo vệ PDF</p>
+          </a>
+
+          <a href="/sign-pdf.html" class="tool-card">
+            <div class="tool-icon-wrapper">
+              <i class="ph ph-pen-nib text-sky-600"></i>
+            </div>
+            <h3 class="tool-title">Ký Tên PDF</h3>
+            <p class="tool-subtitle">
+              Tạo chữ ký số, chèn chữ ký tay & con dấu
+            </p>
+          </a>
+
+          <a href="/remove-restrictions.html" class="tool-card">
+            <div class="tool-icon-wrapper">
+              <i class="ph ph-link-break text-sky-600"></i>
+            </div>
+            <h3 class="tool-title">Gỡ Bỏ Hạn Chế</h3>
+            <p class="tool-subtitle">Mở quyền in ấn, sao chép & chỉnh sửa</p>
+          </a>
+
+          <a href="/change-permissions.html" class="tool-card">
+            <div class="tool-icon-wrapper">
+              <i class="ph ph-shield-check text-sky-600"></i>
+            </div>
+            <h3 class="tool-title">Phân Quyền PDF</h3>
+            <p class="tool-subtitle">
+              Thiết lập chi tiết quyền truy cập tài liệu
+            </p>
+          </a>
+
+          <a href="/sanitize-pdf.html" class="tool-card">
+            <div class="tool-icon-wrapper">
+              <i class="ph ph-broom text-sky-600"></i>
+            </div>
+            <h3 class="tool-title">Làm Sạch PDF</h3>
+            <p class="tool-subtitle">Xóa vết chỉnh sửa & dữ liệu nhạy cảm ẩn</p>
+          </a>
+
+          <a href="/flatten-pdf.html" class="tool-card">
+            <div class="tool-icon-wrapper">
+              <i class="ph ph-stack text-sky-600"></i>
+            </div>
+            <h3 class="tool-title">Phẳng Hóa PDF</h3>
+            <p class="tool-subtitle">
+              Gộp biểu mẫu & chữ ký thành 1 lớp duy nhất
+            </p>
+          </a>
+
+          <a href="/linearize-pdf.html" class="tool-card">
+            <div class="tool-icon-wrapper">
+              <i class="ph ph-gauge text-sky-600"></i>
+            </div>
+            <h3 class="tool-title">Tối Ưu Hóa Web</h3>
+            <p class="tool-subtitle">
+              Cấu hình Fast Web View để mở PDF siêu tốc
+            </p>
+          </a>
+
+          <a href="/remove-metadata.html" class="tool-card">
+            <div class="tool-icon-wrapper">
+              <i class="ph ph-file-x text-sky-600"></i>
+            </div>
+            <h3 class="tool-title">Xóa Metadata</h3>
+            <p class="tool-subtitle">
+              Gỡ tác giả, ngày tạo & phần mềm tạo file
+            </p>
+          </a>
+
+          <a href="/pdf-layers.html" class="tool-card">
+            <div class="tool-icon-wrapper">
+              <i class="ph ph-stack-simple text-sky-600"></i>
+            </div>
+            <h3 class="tool-title">Quản Lý Layer</h3>
+            <p class="tool-subtitle">Bật tắt và xóa các lớp bản vẽ PDF</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture & Comparison Section -->
+    <section
+      class="bg-gradient-to-b from-sky-50/60 to-slate-50 py-14 border-y border-sky-100/70"
+    >
+      <div class="container mx-auto px-4">
+        <div class="max-w-5xl mx-auto">
+          <div class="text-center mb-12">
+            <h2
+              class="text-2xl md:text-4xl font-extrabold text-slate-950 tracking-tight mb-4"
+              data-i18n="site:security.architectureTitle"
+            >
+              Tại Sao Kiến Trúc "Client-Side Only" Lại Quan Trọng Cho Bảo Mật?
+            </h2>
+            <p
+              class="text-slate-600 max-w-2xl mx-auto text-base"
+              data-i18n="site:security.architectureDescription"
+            >
+              Hầu hết các công cụ trực tuyến khác đều tải tài liệu riêng tư của
+              bạn lên máy chủ bên thứ ba. PagodaPDF thay đổi hoàn toàn cuộc
+              chơi.
+            </p>
+          </div>
+
+          <!-- Comparison Grid -->
+          <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <!-- Legacy Server Processing -->
+            <div
+              class="bg-white p-6 md:p-8 rounded-2xl border border-rose-100 shadow-sm relative overflow-hidden"
+            >
+              <div
+                class="w-12 h-12 rounded-xl bg-rose-50 border border-rose-200 flex items-center justify-center text-rose-600 mb-5"
+              >
+                <i class="ph ph-warning-circle text-2xl"></i>
+              </div>
+              <h3
+                class="text-xl font-bold text-slate-900 mb-3"
+                data-i18n="site:security.legacyTitle"
+              >
+                Công Cụ Đẩy File Lên Server (Truyền Thống)
+              </h3>
+              <ul class="space-y-3 text-slate-600 text-sm">
+                <li class="flex items-start gap-2.5">
+                  <i
+                    class="ph ph-x-circle text-rose-500 text-lg flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span data-i18n="site:security.legacyRiskOne"
+                    >Tài liệu hợp đồng, báo cáo tài chính bị tải lên máy chủ
+                    ngoài.</span
+                  >
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i
+                    class="ph ph-x-circle text-rose-500 text-lg flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span data-i18n="site:security.legacyRiskTwo"
+                    >Nguy cơ rò rỉ dữ liệu nếu server bị tấn công hoặc lưu trữ
+                    nhật ký (logs).</span
+                  >
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i
+                    class="ph ph-x-circle text-rose-500 text-lg flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span data-i18n="site:security.legacyRiskThree"
+                    >Phụ thuộc tốc độ đường truyền mạng khi tải tệp dung lượng
+                    lớn.</span
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <!-- PagodaPDF Client Side -->
+            <div
+              class="bg-white p-6 md:p-8 rounded-2xl border border-emerald-200 shadow-md relative overflow-hidden ring-1 ring-emerald-500/20"
+            >
+              <div
+                class="absolute top-3 right-3 bg-emerald-100 text-emerald-800 font-bold text-xs px-2.5 py-1 rounded-full border border-emerald-300"
+                data-i18n="site:security.localBadge"
+              >
+                Chuẩn PagodaPDF
+              </div>
+              <div
+                class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 mb-5"
+              >
+                <i class="ph ph-shield-check text-2xl"></i>
+              </div>
+              <h3
+                class="text-xl font-bold text-slate-900 mb-3"
+                data-i18n="site:security.localTitle"
+              >
+                Bảo Mật Tại Chỗ (PagodaPDF Local WASM)
+              </h3>
+              <ul class="space-y-3 text-slate-600 text-sm">
+                <li class="flex items-start gap-2.5">
+                  <i
+                    class="ph ph-check-circle text-emerald-500 text-lg flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span data-i18n="site:security.localOne"
+                    ><strong>100% Xử lý trong RAM máy tính của bạn</strong>
+                    thông qua WebAssembly.</span
+                  >
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i
+                    class="ph ph-check-circle text-emerald-500 text-lg flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span data-i18n="site:security.localTwo"
+                    >File không bao giờ thoát khỏi trình duyệt. Tuyệt đối không
+                    có rủi ro lộ tin.</span
+                  >
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <i
+                    class="ph ph-check-circle text-emerald-500 text-lg flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span data-i18n="site:security.localThree"
+                    >Tốc độ xử lý siêu tốc, hoạt động hoàn hảo cả khi ngắt kết
+                    nối Internet.</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Technical Security Pillars Grid -->
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div
+              class="bg-white p-5 rounded-xl border border-sky-100 shadow-2xs"
+            >
+              <i class="ph ph-key text-3xl text-sky-600 mb-3"></i>
+              <h4
+                class="font-bold text-slate-900 mb-1"
+                data-i18n="site:security.aesTitle"
+              >
+                Mã Hóa AES-256
+              </h4>
+              <p
+                class="text-xs text-slate-600"
+                data-i18n="site:security.aesDescription"
+              >
+                Sử dụng chuẩn mã hóa cao cấp nhất thế giới để bảo vệ nội dung
+                PDF.
+              </p>
+            </div>
+
+            <div
+              class="bg-white p-5 rounded-xl border border-sky-100 shadow-2xs"
+            >
+              <i class="ph ph-fingerprint text-3xl text-indigo-600 mb-3"></i>
+              <h4
+                class="font-bold text-slate-900 mb-1"
+                data-i18n="site:security.signatureTitle"
+              >
+                Chữ Ký Số Hợp Pháp
+              </h4>
+              <p
+                class="text-xs text-slate-600"
+                data-i18n="site:security.signatureDescription"
+              >
+                Tạo chữ ký điện tử xác thực tính toàn vẹn và nguồn gốc văn bản.
+              </p>
+            </div>
+
+            <div
+              class="bg-white p-5 rounded-xl border border-sky-100 shadow-2xs"
+            >
+              <i class="ph ph-eye-slash text-3xl text-blue-600 mb-3"></i>
+              <h4
+                class="font-bold text-slate-900 mb-1"
+                data-i18n="site:security.cleanupTitle"
+              >
+                Xóa Dấu Vết Nhạy Cảm
+              </h4>
+              <p
+                class="text-xs text-slate-600"
+                data-i18n="site:security.cleanupDescription"
+              >
+                Loại bỏ hoàn toàn thông tin ẩn, vị trí GPS, tác giả và lịch sử
+                chỉnh sửa.
+              </p>
+            </div>
+
+            <div
+              class="bg-white p-5 rounded-xl border border-sky-100 shadow-2xs"
+            >
+              <i class="ph ph-infinity text-3xl text-teal-600 mb-3"></i>
+              <h4
+                class="font-bold text-slate-900 mb-1"
+                data-i18n="site:security.freeTitle"
+              >
+                Miễn Phí Vĩnh Viễn
+              </h4>
+              <p
+                class="text-xs text-slate-600"
+                data-i18n="site:security.freeDescription"
+              >
+                Không giới hạn kích thước tệp hay số lần mã hóa sử dụng mỗi
+                ngày.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="container mx-auto px-4 py-16">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-10">
+          <h2
+            class="text-2xl md:text-3xl font-extrabold text-slate-950 tracking-tight mb-3"
+            data-i18n="site:security.faqTitle"
+          >
+            Câu Hỏi Thường Gặp Về Bảo Mật PDF
+          </h2>
+          <p
+            class="text-slate-600 text-sm"
+            data-i18n="site:security.faqDescription"
+          >
+            Giải đáp những thắc mắc phổ biến về cơ chế bảo mật và mã hóa tài
+            liệu
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <details
+            class="group bg-white p-5 rounded-2xl border border-sky-100 shadow-2xs transition-all hover:border-sky-200"
+          >
+            <summary
+              class="cursor-pointer font-bold text-slate-900 flex items-center justify-between list-none"
+            >
+              <span data-i18n="site:security.passwordQuestion"
+                >Làm thế nào để đặt mật khẩu bảo vệ tệp PDF của tôi?</span
+              >
+              <span
+                class="w-7 h-7 rounded-full bg-sky-50 flex items-center justify-center text-sky-600 group-open:rotate-180 transition-transform"
+              >
+                <i class="ph ph-caret-down text-lg"></i>
+              </span>
+            </summary>
+            <p
+              class="mt-3 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-3"
+              data-i18n="site:security.passwordAnswer"
+            >
+              Bạn chỉ cần vào công cụ <strong>Mã Hóa PDF</strong>, tải tệp lên
+              và nhập mật khẩu mong muốn. Bạn có thể chọn riêng mật khẩu mở tệp
+              (User Password) hoặc mật khẩu phân quyền (Owner Password) để ngăn
+              người khác in ấn hoặc chỉnh sửa.
+            </p>
+          </details>
+
+          <details
+            class="group bg-white p-5 rounded-2xl border border-sky-100 shadow-2xs transition-all hover:border-sky-200"
+          >
+            <summary
+              class="cursor-pointer font-bold text-slate-900 flex items-center justify-between list-none"
+            >
+              <span data-i18n="site:security.storageQuestion"
+                >PagodaPDF có thực sự không lưu trữ bất kỳ tệp nào của tôi
+                không?</span
+              >
+              <span
+                class="w-7 h-7 rounded-full bg-sky-50 flex items-center justify-center text-sky-600 group-open:rotate-180 transition-transform"
+              >
+                <i class="ph ph-caret-down text-lg"></i>
+              </span>
+            </summary>
+            <p
+              class="mt-3 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-3"
+              data-i18n="site:security.storageAnswer"
+            >
+              Chính xác! PagodaPDF hoạt động 100% dựa trên công nghệ WebAssembly
+              ngay trên trình duyệt của bạn. Tệp tin không bao giờ rời khỏi
+              thiết bị cá nhân của bạn, hoàn toàn không có máy chủ trung gian
+              nào tham gia vào quá trình mã hóa hay giải mã.
+            </p>
+          </details>
+
+          <details
+            class="group bg-white p-5 rounded-2xl border border-sky-100 shadow-2xs transition-all hover:border-sky-200"
+          >
+            <summary
+              class="cursor-pointer font-bold text-slate-900 flex items-center justify-between list-none"
+            >
+              <span data-i18n="site:security.flattenQuestion"
+                >Tính năng "Phẳng Hóa PDF (Flatten PDF)" giúp ích gì cho bảo
+                mật?</span
+              >
+              <span
+                class="w-7 h-7 rounded-full bg-sky-50 flex items-center justify-center text-sky-600 group-open:rotate-180 transition-transform"
+              >
+                <i class="ph ph-caret-down text-lg"></i>
+              </span>
+            </summary>
+            <p
+              class="mt-3 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-3"
+              data-i18n="site:security.flattenAnswer"
+            >
+              Khi bạn phẳng hóa PDF, tất cả các lớp tương tác như ô nhập liệu
+              biểu mẫu, chữ ký hay ghi chú sẽ được gộp thành hình ảnh cố định
+              gắn liền với trang. Điều này ngăn chặn việc người khác chỉnh sửa
+              nội dung hoặc trích xuất chữ ký của bạn.
+            </p>
+          </details>
+
+          <details
+            class="group bg-white p-5 rounded-2xl border border-sky-100 shadow-2xs transition-all hover:border-sky-200"
+          >
+            <summary
+              class="cursor-pointer font-bold text-slate-900 flex items-center justify-between list-none"
+            >
+              <span data-i18n="site:security.unlockQuestion"
+                >Tôi có thể mở khóa tệp PDF nếu quên mật khẩu không?</span
+              >
+              <span
+                class="w-7 h-7 rounded-full bg-sky-50 flex items-center justify-center text-sky-600 group-open:rotate-180 transition-transform"
+              >
+                <i class="ph ph-caret-down text-lg"></i>
+              </span>
+            </summary>
+            <p
+              class="mt-3 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-3"
+              data-i18n="site:security.unlockAnswer"
+            >
+              Đối với mật khẩu phân quyền (Owner Password / Permission
+              restriction), công cụ <strong>Giải Mã PDF</strong> có thể gỡ bỏ dễ
+              dàng. Tuy nhiên đối với mật khẩu mã hóa tệp (User Password mở file
+              chuẩn AES-256), bạn cần cung cấp mật khẩu chính xác để giải mã.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    {{> footer }}
+
+    <script type="module" src="/src/js/utils/lucide-init.ts"></script>
+    <script type="module" src="/src/js/mobileMenu.ts"></script>
+    <script type="module" src="/src/js/main.ts"></script>
+
+    <!-- JSON-LD CollectionPage Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "PDF Security Tools",
+        "description": "Encrypt, decrypt, sign, and secure your PDFs with free online security tools. Password protection, digital signatures, permissions management. Privacy-first security in your browser.",
+        "url": "https://pagodapdf.example/pdf-security",
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://pagodapdf.example"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "PDF Security",
+              "item": "https://pagodapdf.example/pdf-security"
+            }
+          ]
+        }
+      }
+    </script>
+  </body>
+</html>

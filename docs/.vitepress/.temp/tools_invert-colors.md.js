@@ -1,0 +1,19 @@
+import { ssrRenderAttrs } from "vue/server-renderer";
+import { useSSRContext } from "vue";
+import { _ as _export_sfc } from "./plugin-vue_export-helper.1tPrXgE0.js";
+const __pageData = JSON.parse('{"title":"Invert Colors","description":"Invert all colors in your PDF to create a dark mode version of any document.","frontmatter":{"title":"Invert Colors","description":"Invert all colors in your PDF to create a dark mode version of any document.","head":[["link",{"rel":"canonical","href":"https://nguyenthaidinh.github.io/Pagoda/docs/tools/invert-colors"}]]},"headers":[],"relativePath":"tools/invert-colors.md","filePath":"tools/invert-colors.md"}');
+const _sfc_main = { name: "tools/invert-colors.md" };
+function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  _push(`<div${ssrRenderAttrs(_attrs)}><h1 id="invert-colors" tabindex="-1">Invert Colors <a class="header-anchor" href="#invert-colors" aria-label="Permalink to &quot;Invert Colors&quot;">​</a></h1><p>Flip every color in your PDF to its inverse. White backgrounds become black, black text becomes white, and all other colors shift to their complementary values. This is the fastest way to create a &quot;dark mode&quot; version of any PDF.</p><h2 id="how-it-works" tabindex="-1">How It Works <a class="header-anchor" href="#how-it-works" aria-label="Permalink to &quot;How It Works&quot;">​</a></h2><ol><li>Upload your PDF file.</li><li>Click <strong>Invert Colors</strong> to process.</li><li>The inverted PDF downloads automatically.</li></ol><p>There are no additional settings. The tool renders each page as an image, inverts all pixel colors, and reassembles the result into a new PDF.</p><h2 id="features" tabindex="-1">Features <a class="header-anchor" href="#features" aria-label="Permalink to &quot;Features&quot;">​</a></h2><ul><li>One-click color inversion for all pages</li><li>Processes every page in the document</li><li>Maintains original page dimensions and layout</li><li>Works with any PDF regardless of content type (text, images, mixed)</li></ul><h2 id="use-cases" tabindex="-1">Use Cases <a class="header-anchor" href="#use-cases" aria-label="Permalink to &quot;Use Cases&quot;">​</a></h2><ul><li>Creating dark-mode versions of textbooks or manuals for comfortable nighttime reading</li><li>Preparing high-contrast versions of documents for accessibility purposes</li><li>Inverting scanned documents that were captured with incorrect exposure</li><li>Generating negative versions of image-heavy PDFs for visual analysis</li></ul><h2 id="tips" tabindex="-1">Tips <a class="header-anchor" href="#tips" aria-label="Permalink to &quot;Tips&quot;">​</a></h2><ul><li>Since the tool rasterizes pages to apply the effect, the output is image-based. Text will no longer be selectable or searchable. If you need searchable text after inversion, run the output through an OCR tool.</li><li>For more granular color adjustments (brightness, contrast, saturation), use the <a href="./adjust-colors">Adjust Colors</a> tool instead.</li><li>Large PDFs with many pages may take longer to process since each page is individually rendered and inverted.</li></ul><h2 id="related-tools" tabindex="-1">Related Tools <a class="header-anchor" href="#related-tools" aria-label="Permalink to &quot;Related Tools&quot;">​</a></h2><ul><li><a href="./adjust-colors">Adjust Colors</a></li><li><a href="./background-color">Background Color</a></li><li><a href="./scanner-effect">Scanner Effect</a></li></ul></div>`);
+}
+const _sfc_setup = _sfc_main.setup;
+_sfc_main.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("tools/invert-colors.md");
+  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
+};
+const invertColors = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
+export {
+  __pageData,
+  invertColors as default
+};

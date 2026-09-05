@@ -1,0 +1,19 @@
+import { ssrRenderAttrs } from "vue/server-renderer";
+import { useSSRContext } from "vue";
+import { _ as _export_sfc } from "./plugin-vue_export-helper.1tPrXgE0.js";
+const __pageData = JSON.parse('{"title":"Extract Attachments","description":"Extract all embedded file attachments from one or more PDFs and download them as a ZIP archive.","frontmatter":{"title":"Extract Attachments","description":"Extract all embedded file attachments from one or more PDFs and download them as a ZIP archive.","head":[["link",{"rel":"canonical","href":"https://nguyenthaidinh.github.io/Pagoda/docs/tools/extract-attachments"}]]},"headers":[],"relativePath":"tools/extract-attachments.md","filePath":"tools/extract-attachments.md"}');
+const _sfc_main = { name: "tools/extract-attachments.md" };
+function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  _push(`<div${ssrRenderAttrs(_attrs)}><h1 id="extract-attachments" tabindex="-1">Extract Attachments <a class="header-anchor" href="#extract-attachments" aria-label="Permalink to &quot;Extract Attachments&quot;">​</a></h1><p>Pull out every embedded attachment from one or more PDF files. All extracted files are bundled into a single ZIP archive for download.</p><h2 id="how-it-works" tabindex="-1">How It Works <a class="header-anchor" href="#how-it-works" aria-label="Permalink to &quot;How It Works&quot;">​</a></h2><ol><li>Upload one or more PDF files that contain embedded attachments.</li><li>Click <strong>Extract Attachments</strong>.</li><li>The tool scans each PDF for document-level and page-level attachments.</li><li>All found files are packaged into a ZIP archive and downloaded automatically.</li><li>A status message confirms how many attachments were found and their total size.</li></ol><h2 id="features" tabindex="-1">Features <a class="header-anchor" href="#features" aria-label="Permalink to &quot;Features&quot;">​</a></h2><ul><li>Batch extraction from multiple PDFs at once</li><li>Extracts both document-level and page-level attachments</li><li>Outputs a single ZIP file containing all extracted files</li><li>Displays total attachment count and combined file size</li><li>Clear status messages if no attachments are found</li></ul><h2 id="use-cases" tabindex="-1">Use Cases <a class="header-anchor" href="#use-cases" aria-label="Permalink to &quot;Use Cases&quot;">​</a></h2><ul><li>Recovering data files embedded in a report PDF</li><li>Pulling image assets out of a portfolio or specification document</li><li>Extracting supplementary materials from training or compliance PDFs</li><li>Auditing what files are embedded inside a batch of PDFs</li></ul><h2 id="tips" tabindex="-1">Tips <a class="header-anchor" href="#tips" aria-label="Permalink to &quot;Tips&quot;">​</a></h2><ul><li>If the tool reports no attachments, the PDF may contain embedded images or form data instead -- those are not file attachments. Use <a href="./extract-images">Extract Images</a> for embedded images.</li><li>When processing multiple PDFs, all attachments from every file end up in one ZIP. File names are preserved from the original embeddings.</li></ul><h2 id="related-tools" tabindex="-1">Related Tools <a class="header-anchor" href="#related-tools" aria-label="Permalink to &quot;Related Tools&quot;">​</a></h2><ul><li><a href="./add-attachments">Add Attachments</a></li><li><a href="./edit-attachments">Edit Attachments</a></li><li><a href="./extract-images">Extract Images</a></li></ul></div>`);
+}
+const _sfc_setup = _sfc_main.setup;
+_sfc_main.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("tools/extract-attachments.md");
+  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
+};
+const extractAttachments = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
+export {
+  __pageData,
+  extractAttachments as default
+};

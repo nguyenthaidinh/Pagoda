@@ -1,0 +1,17 @@
+PagodaPDF
+Copyright (C) 2026 Nguyen Thai Dinh / LioDev
+
+PagodaPDF is a modified derivative of BentoPDF:
+https://github.com/alam00000/bentopdf
+
+The original work is copyright its respective authors and BentoPDF
+contributors. PagodaPDF retains the original project's license and relevant
+third-party notices. The combined work is distributed under the GNU Affero
+General Public License version 3 only (AGPL-3.0-only); see LICENSE.
+
+PagodaPDF includes modifications to branding, interface, localization,
+configuration, documentation, tests, and PDF processing behavior.
+
+PagodaPDF is an independent project. It is not affiliated with, sponsored by,
+or officially endorsed by BentoPDF or its contributors.
+

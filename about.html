@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="site:pages.about.browserTitle">About PagodaPDF</title>
+    <meta
+      name="description"
+      content="PagodaPDF is a privacy-focused, browser-based PDF toolkit released as open source software."
+    />
+    <meta name="author" content="PagodaPDF" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://pagodapdf.example/about" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pagodapdf.example/about" />
+    <meta property="og:title" content="About PagodaPDF" />
+    <meta
+      property="og:description"
+      content="A clean, privacy-focused PDF toolkit that runs in your browser."
+    />
+    <meta property="og:site_name" content="PagodaPDF" />
+    <link href="/src/css/styles.css" rel="stylesheet" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="/images/pagoda-logo.svg" />
+  </head>
+  <body class="antialiased bg-gray-900 text-gray-300">
+    {{> navbar }}
+
+    <main class="container mx-auto px-4 py-12 md:py-16">
+      <section class="max-w-4xl mx-auto">
+        <p class="text-sm font-semibold text-indigo-400 uppercase mb-3">
+          PagodaPDF
+        </p>
+        <h1
+          class="text-3xl md:text-5xl font-bold text-white mb-6"
+          data-i18n="site:pages.about.title"
+        >
+          Private PDF tools for everyday work
+        </h1>
+        <p
+          class="text-lg text-gray-400 mb-8"
+          data-i18n="site:pages.about.intro"
+        >
+          PagodaPDF is a browser-based PDF toolkit focused on useful document
+          actions without forcing your files through an upload-first workflow.
+          It is being adapted as an open source project with a lighter, cleaner
+          interface.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="bg-gray-800 border border-gray-700 rounded-lg p-5">
+            <h2
+              class="text-lg font-semibold text-white mb-2"
+              data-i18n="site:pages.about.localTitle"
+            >
+              Local First
+            </h2>
+            <p
+              class="text-sm text-gray-400"
+              data-i18n="site:pages.about.localDescription"
+            >
+              Core PDF actions run in the browser whenever possible, keeping
+              documents on your device.
+            </p>
+          </div>
+          <div class="bg-gray-800 border border-gray-700 rounded-lg p-5">
+            <h2
+              class="text-lg font-semibold text-white mb-2"
+              data-i18n="site:pages.about.openTitle"
+            >
+              Open Source
+            </h2>
+            <p
+              class="text-sm text-gray-400"
+              data-i18n="site:pages.about.openDescription"
+            >
+              The source can be reviewed, modified, and shared under the
+              AGPL-3.0 license.
+            </p>
+          </div>
+          <div class="bg-gray-800 border border-gray-700 rounded-lg p-5">
+            <h2
+              class="text-lg font-semibold text-white mb-2"
+              data-i18n="site:pages.about.practicalTitle"
+            >
+              Practical
+            </h2>
+            <p
+              class="text-sm text-gray-400"
+              data-i18n="site:pages.about.practicalDescription"
+            >
+              The interface is built around getting to the right PDF tool
+              quickly.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    {{> footer }}
+    <script type="module" src="/src/js/utils/lucide-init.ts"></script>
+    <script type="module" src="/src/js/mobileMenu.ts"></script>
+    <script type="module" src="/src/js/main.ts"></script>
+  </body>
+</html>

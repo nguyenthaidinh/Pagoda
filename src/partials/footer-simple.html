@@ -1,0 +1,247 @@
+<footer
+  class="site-footer mt-20 border-t border-sky-100"
+  data-simple-footer="true"
+>
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="footer-simple-grid">
+      <!-- Brand & Mission Column -->
+      <div class="footer-brand-block">
+        <div class="footer-brand-row">
+          <img
+            id="footer-logo"
+            src="{{baseUrl}}{{#if brandLogo}}{{brandLogo}}{{else}}images/pagoda-logo.svg{{/if}}"
+            alt="{{#if brandName}}{{brandName}}{{else}}PagodaPDF{{/if}} Logo"
+            class="footer-logo footer-logo-simple"
+          />
+          <div class="footer-brand-copy">
+            <div class="footer-brand-header">
+              <span id="footer-brand" class="footer-brand-name"
+                >{{#if brandName}}{{brandName}}{{else}}PagodaPDF{{/if}}</span
+              >
+              <span class="footer-maker">LioDev</span>
+            </div>
+            <span class="footer-enterprise-tag"
+              >Enterprise WebAssembly PDF</span
+            >
+          </div>
+        </div>
+
+        <p class="footer-brand-desc">
+          Bộ công cụ PDF bảo mật cao cấp với công nghệ WebAssembly xử lý 100%
+          cục bộ trên trình duyệt. Dữ liệu của bạn được đảm bảo riêng tư tuyệt
+          đối và không gửi lên bất kỳ máy chủ nào.
+        </p>
+
+        <!-- Trust Badges -->
+        <div class="footer-trust-strip">
+          <div class="footer-trust-item" title="100% Client-Side WebAssembly">
+            <i
+              data-lucide="shield-check"
+              class="h-3.5 w-3.5 text-emerald-600"
+            ></i>
+            <span>100% Client-Side</span>
+          </div>
+          <div
+            class="footer-trust-item"
+            title="Hoạt động offline không cần tải dữ liệu"
+          >
+            <i data-lucide="zap" class="h-3.5 w-3.5 text-amber-500"></i>
+            <span>WASM Offline</span>
+          </div>
+          <div class="footer-trust-item" title="Mã nguồn mở minh bạch AGPL-3.0">
+            <i data-lucide="lock" class="h-3.5 w-3.5 text-sky-600"></i>
+            <span>Bảo mật tuyệt đối</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Contact, Social & Language -->
+      <div class="footer-simple-actions">
+        <!-- Clean Single-Line Email Box -->
+        <div class="footer-email-box">
+          <a
+            href="mailto:hotropagoda@liotnu.com"
+            class="footer-email-link"
+            title="Gửi email tới hotropagoda@liotnu.com"
+          >
+            <!-- Official Google Gmail SVG Icon -->
+            <svg
+              class="gmail-svg-logo"
+              viewBox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                fill="#4caf50"
+                d="M45,16.2l-5,2.75l-5,4.75L35,40h7c1.657,0,3-1.343,3-3V16.2z"
+              />
+              <path
+                fill="#1e88e5"
+                d="M3,16.2l3.614,1.71L13,23.7V40H6c-1.657,0-3-1.343-3-3V16.2z"
+              />
+              <polygon
+                fill="#e53935"
+                points="35,11.2 24,19.45 13,11.2 12,17 13,23.7 24,31.95 35,23.7 36,17"
+              />
+              <path
+                fill="#c62828"
+                d="M3,12.298V16.2l10,7.5V11.2L9.876,8.859C8.132,7.551,5.638,8.138,4.62,10.016 C4.129,10.922,3.876,11.94,3,12.298z"
+              />
+              <path
+                fill="#fbc02d"
+                d="M45,12.298V16.2l-10,7.5V11.2l3.124-2.341c1.744-1.308,4.238-0.721,5.256,1.157 C43.871,10.922,44.124,11.94,45,12.298z"
+              />
+            </svg>
+            <span class="footer-email-text">hotropagoda@liotnu.com</span>
+          </a>
+          <button
+            type="button"
+            class="footer-copy-btn"
+            data-copy-email="hotropagoda@liotnu.com"
+            title="Sao chép email"
+            aria-label="Sao chép địa chỉ email"
+          >
+            <span class="copy-icon" aria-hidden="true">
+              <svg
+                class="h-3.5 w-3.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+                <path
+                  d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+                ></path>
+              </svg>
+            </span>
+            <span class="copy-text">Sao chép</span>
+          </button>
+        </div>
+        <p class="footer-contact-hint">
+          Hỗ trợ kỹ thuật &amp; Đối tác doanh nghiệp
+        </p>
+
+        <!-- Social & Developer Links (GitHub + LinkedIn) -->
+        <div class="footer-social-row">
+          <a
+            href="https://github.com/nguyenthaidinh"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer-social-chip footer-social-github"
+            title="GitHub Profile - nguyenthaidinh"
+          >
+            <svg
+              class="social-icon"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+              />
+            </svg>
+            <span>GitHub</span>
+            <i
+              data-lucide="arrow-up-right"
+              class="social-arrow h-3 w-3 opacity-60"
+            ></i>
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/imlio"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer-social-chip footer-social-linkedin"
+            title="LinkedIn Profile - imlio"
+          >
+            <svg
+              class="social-icon text-[#0A66C2]"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.6a1.64 1.64 0 1 0 1.64 1.64A1.64 1.64 0 0 0 7.83 6.6z"
+              />
+            </svg>
+            <span>LinkedIn</span>
+            <i
+              data-lucide="arrow-up-right"
+              class="social-arrow h-3 w-3 opacity-60"
+            ></i>
+          </a>
+        </div>
+
+        <!-- Language Switcher -->
+        <div class="footer-language" data-footer-language-switcher>
+          <div class="footer-language-heading">
+            <i data-lucide="languages" class="h-3.5 w-3.5 text-sky-600"></i>
+            <span data-i18n="nav.language">Ngôn ngữ</span>
+          </div>
+          <div class="footer-language-options">
+            <button
+              type="button"
+              class="footer-language-option"
+              data-footer-lang="en"
+            >
+              English
+            </button>
+            <button
+              type="button"
+              class="footer-language-option"
+              data-footer-lang="vi"
+            >
+              Tiếng Việt
+            </button>
+            <button
+              type="button"
+              class="footer-language-option"
+              data-footer-lang="de"
+            >
+              Deutsch
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Sub-Footer Bar -->
+    <div class="footer-sub-bar">
+      <div class="footer-sub-left">
+        <p
+          id="footer-copyright"
+          class="footer-muted"
+          data-i18n="site:footer.copyright"
+        >
+          {{#if footerText}}{{footerText}}{{else}}(c) 2026 PagodaPDF. Released
+          under AGPL-3.0.{{/if}}
+        </p>
+        <span class="footer-sub-dot">•</span>
+        <span class="footer-sub-credit"
+          >Phát triển bởi <strong>LioDev</strong></span
+        >
+      </div>
+
+      <div class="footer-sub-right">
+        <div
+          class="footer-engine-status"
+          title="Toàn bộ xử lý độc lập tại máy khách"
+        >
+          <span class="engine-pulse-dot"></span>
+          <span>100% Client-Side WASM Engine</span>
+        </div>
+        <p class="footer-version">
+          <span data-i18n="footer.version">Version</span>
+          <span id="app-version">{{appVersion}}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

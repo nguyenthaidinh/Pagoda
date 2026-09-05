@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="site:pages.faq.browserTitle">FAQ - PagodaPDF</title>
+    <meta
+      name="description"
+      content="Common questions about PagodaPDF, privacy, licensing, and browser-based PDF processing."
+    />
+    <meta name="author" content="PagodaPDF" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://pagodapdf.example/faq" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pagodapdf.example/faq" />
+    <meta property="og:title" content="FAQ - PagodaPDF" />
+    <meta
+      property="og:description"
+      content="Common questions about PagodaPDF and browser-based PDF tools."
+    />
+    <meta property="og:site_name" content="PagodaPDF" />
+    <link href="/src/css/styles.css" rel="stylesheet" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="/images/pagoda-logo.svg" />
+  </head>
+  <body class="antialiased bg-gray-900 text-gray-300">
+    {{> navbar }}
+
+    <main class="container mx-auto px-4 py-12 md:py-16">
+      <section class="max-w-4xl mx-auto">
+        <h1
+          class="text-3xl md:text-5xl font-bold text-white mb-8"
+          data-i18n="site:pages.faq.title"
+        >
+          Frequently Asked Questions
+        </h1>
+
+        <div class="space-y-4">
+          <details class="bg-gray-800 border border-gray-700 rounded-lg p-5">
+            <summary
+              class="cursor-pointer font-semibold text-white"
+              data-i18n="site:pages.faq.uploadQuestion"
+            >
+              Are files uploaded to a server?
+            </summary>
+            <p
+              class="mt-3 text-gray-400"
+              data-i18n="site:pages.faq.uploadAnswer"
+            >
+              Core processing is designed to run locally in the browser, so your
+              files stay on your device for ordinary PDF operations.
+            </p>
+          </details>
+
+          <details class="bg-gray-800 border border-gray-700 rounded-lg p-5">
+            <summary
+              class="cursor-pointer font-semibold text-white"
+              data-i18n="site:pages.faq.sourceQuestion"
+            >
+              Is PagodaPDF open source?
+            </summary>
+            <p
+              class="mt-3 text-gray-400"
+              data-i18n="site:pages.faq.sourceAnswer"
+            >
+              Yes. PagodaPDF is released under AGPL-3.0-only, with license
+              notices retained for included third-party components.
+            </p>
+          </details>
+
+          <details class="bg-gray-800 border border-gray-700 rounded-lg p-5">
+            <summary
+              class="cursor-pointer font-semibold text-white"
+              data-i18n="site:pages.faq.databaseQuestion"
+            >
+              Does it need a database?
+            </summary>
+            <p
+              class="mt-3 text-gray-400"
+              data-i18n="site:pages.faq.databaseAnswer"
+            >
+              No database is required for the current static, browser-based tool
+              experience.
+            </p>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    {{> footer }}
+    <script type="module" src="/src/js/utils/lucide-init.ts"></script>
+    <script type="module" src="/src/js/mobileMenu.ts"></script>
+    <script type="module" src="/src/js/main.ts"></script>
+  </body>
+</html>

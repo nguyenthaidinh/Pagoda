@@ -1,0 +1,19 @@
+import { ssrRenderAttrs } from "vue/server-renderer";
+import { useSSRContext } from "vue";
+import { _ as _export_sfc } from "./plugin-vue_export-helper.1tPrXgE0.js";
+const __pageData = JSON.parse('{"title":"PDF to WebP","description":"Convert PDF pages to WebP images with adjustable quality. Smaller file sizes than JPG at comparable visual quality.","frontmatter":{"title":"PDF to WebP","description":"Convert PDF pages to WebP images with adjustable quality. Smaller file sizes than JPG at comparable visual quality.","head":[["link",{"rel":"canonical","href":"https://nguyenthaidinh.github.io/Pagoda/docs/tools/pdf-to-webp"}]]},"headers":[],"relativePath":"tools/pdf-to-webp.md","filePath":"tools/pdf-to-webp.md"}');
+const _sfc_main = { name: "tools/pdf-to-webp.md" };
+function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  _push(`<div${ssrRenderAttrs(_attrs)}><h1 id="pdf-to-webp" tabindex="-1">PDF to WebP <a class="header-anchor" href="#pdf-to-webp" aria-label="Permalink to &quot;PDF to WebP&quot;">​</a></h1><p>Converts each page of a PDF into a WebP image. WebP typically produces files 25-35% smaller than JPG at the same perceived quality, making it a strong choice for web use.</p><h2 id="how-it-works" tabindex="-1">How It Works <a class="header-anchor" href="#how-it-works" aria-label="Permalink to &quot;How It Works&quot;">​</a></h2><ol><li>Upload a PDF by clicking the drop zone or dragging a file onto it.</li><li>Adjust the <strong>Quality</strong> slider.</li><li>Click <strong>Convert</strong> to process the file.</li><li>A single <code>.webp</code> file or a ZIP archive downloads automatically.</li></ol><h2 id="options" tabindex="-1">Options <a class="header-anchor" href="#options" aria-label="Permalink to &quot;Options&quot;">​</a></h2><ul><li><strong>Quality</strong> -- a slider from 0% to 100% (default 85%). Controls the lossy compression level. Higher values retain more detail.</li></ul><p>Pages render at 2x scale internally, producing images at roughly double the PDF&#39;s native dimensions.</p><h2 id="output-format" tabindex="-1">Output Format <a class="header-anchor" href="#output-format" aria-label="Permalink to &quot;Output Format&quot;">​</a></h2><ul><li><strong>Single page</strong>: <code>filename.webp</code></li><li><strong>Multiple pages</strong>: <code>filename_webps.zip</code> containing <code>page_1.webp</code>, <code>page_2.webp</code>, etc.</li></ul><h2 id="use-cases" tabindex="-1">Use Cases <a class="header-anchor" href="#use-cases" aria-label="Permalink to &quot;Use Cases&quot;">​</a></h2><ul><li>Preparing page previews for websites where bandwidth matters.</li><li>Generating lightweight image versions of flyers or brochures for social media.</li><li>Batch-converting multi-page documents into a web-optimized image set.</li></ul><h2 id="tips" tabindex="-1">Tips <a class="header-anchor" href="#tips" aria-label="Permalink to &quot;Tips&quot;">​</a></h2><ul><li>WebP is supported in all modern browsers. For legacy compatibility, fall back to <a href="./pdf-to-jpg">PDF to JPG</a>.</li><li>A quality of 80-85% is usually indistinguishable from the original on screen while keeping file sizes small.</li></ul><h2 id="related-tools" tabindex="-1">Related Tools <a class="header-anchor" href="#related-tools" aria-label="Permalink to &quot;Related Tools&quot;">​</a></h2><ul><li><a href="./pdf-to-jpg">PDF to JPG</a></li><li><a href="./pdf-to-png">PDF to PNG</a></li><li><a href="./pdf-to-bmp">PDF to BMP</a></li></ul></div>`);
+}
+const _sfc_setup = _sfc_main.setup;
+_sfc_main.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("tools/pdf-to-webp.md");
+  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
+};
+const pdfToWebp = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
+export {
+  __pageData,
+  pdfToWebp as default
+};

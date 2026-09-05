@@ -1,0 +1,19 @@
+import { ssrRenderAttrs } from "vue/server-renderer";
+import { useSSRContext } from "vue";
+import { _ as _export_sfc } from "./plugin-vue_export-helper.1tPrXgE0.js";
+const __pageData = JSON.parse('{"title":"PDF to BMP","description":"Convert PDF pages to uncompressed BMP images. Useful for legacy systems and print workflows that require bitmap input.","frontmatter":{"title":"PDF to BMP","description":"Convert PDF pages to uncompressed BMP images. Useful for legacy systems and print workflows that require bitmap input.","head":[["link",{"rel":"canonical","href":"https://nguyenthaidinh.github.io/Pagoda/docs/tools/pdf-to-bmp"}]]},"headers":[],"relativePath":"tools/pdf-to-bmp.md","filePath":"tools/pdf-to-bmp.md"}');
+const _sfc_main = { name: "tools/pdf-to-bmp.md" };
+function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  _push(`<div${ssrRenderAttrs(_attrs)}><h1 id="pdf-to-bmp" tabindex="-1">PDF to BMP <a class="header-anchor" href="#pdf-to-bmp" aria-label="Permalink to &quot;PDF to BMP&quot;">​</a></h1><p>Converts each page of a PDF into a BMP (Bitmap) image. BMP is an uncompressed format, so the output is pixel-perfect with no quality loss -- but files are large.</p><h2 id="how-it-works" tabindex="-1">How It Works <a class="header-anchor" href="#how-it-works" aria-label="Permalink to &quot;How It Works&quot;">​</a></h2><ol><li>Upload a PDF by clicking the drop zone or dragging a file onto it.</li><li>Click <strong>Convert</strong> to process the file.</li><li>A single <code>.bmp</code> file or a ZIP archive downloads automatically.</li></ol><h2 id="options" tabindex="-1">Options <a class="header-anchor" href="#options" aria-label="Permalink to &quot;Options&quot;">​</a></h2><p>This tool has no configurable options. Pages render at a fixed 2x scale, producing images at approximately double the PDF&#39;s native page dimensions.</p><h2 id="output-format" tabindex="-1">Output Format <a class="header-anchor" href="#output-format" aria-label="Permalink to &quot;Output Format&quot;">​</a></h2><ul><li><strong>Single page</strong>: <code>filename.bmp</code></li><li><strong>Multiple pages</strong>: <code>filename_bmps.zip</code> containing <code>page_1.bmp</code>, <code>page_2.bmp</code>, etc.</li></ul><h2 id="use-cases" tabindex="-1">Use Cases <a class="header-anchor" href="#use-cases" aria-label="Permalink to &quot;Use Cases&quot;">​</a></h2><ul><li>Feeding PDF pages into legacy systems or hardware that only accept BMP input.</li><li>Preparing uncompressed images for specific print workflows.</li><li>Using bitmap output as input for image-processing tools that require raw pixel data.</li></ul><h2 id="tips" tabindex="-1">Tips <a class="header-anchor" href="#tips" aria-label="Permalink to &quot;Tips&quot;">​</a></h2><ul><li>BMP files are very large because they store raw pixel data without compression. For most uses, <a href="./pdf-to-png">PDF to PNG</a> gives lossless quality with much smaller files.</li><li>If your target system accepts PNG or TIFF, prefer those formats to save disk space.</li></ul><h2 id="related-tools" tabindex="-1">Related Tools <a class="header-anchor" href="#related-tools" aria-label="Permalink to &quot;Related Tools&quot;">​</a></h2><ul><li><a href="./pdf-to-png">PDF to PNG</a></li><li><a href="./pdf-to-tiff">PDF to TIFF</a></li><li><a href="./pdf-to-jpg">PDF to JPG</a></li></ul></div>`);
+}
+const _sfc_setup = _sfc_main.setup;
+_sfc_main.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("tools/pdf-to-bmp.md");
+  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
+};
+const pdfToBmp = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
+export {
+  __pageData,
+  pdfToBmp as default
+};

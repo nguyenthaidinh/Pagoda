@@ -1,0 +1,28 @@
+{
+    "name": "PagodaPDF",
+    "short_name": "PagodaPDF",
+    "description": "Browser-based PDF tools for working with documents locally.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#f0f9ff",
+    "theme_color": "#38bdf8",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/images/pagoda-logo.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "maskable any"
+        }
+    ],
+    "categories": [
+        "productivity",
+        "utilities",
+        "privacy",
+        "pdf",
+        "security",
+        "offline",
+        "tools"
+    ],
+    "screenshots": []
+}

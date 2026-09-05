@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="site:pages.licensing.browserTitle">
+      Licensing - PagodaPDF
+    </title>
+    <meta
+      name="description"
+      content="PagodaPDF licensing information for the AGPL-3.0 open source release."
+    />
+    <meta name="author" content="PagodaPDF" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://pagodapdf.example/licensing" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pagodapdf.example/licensing" />
+    <meta property="og:title" content="Licensing - PagodaPDF" />
+    <meta
+      property="og:description"
+      content="PagodaPDF is released under AGPL-3.0-only."
+    />
+    <meta property="og:site_name" content="PagodaPDF" />
+    <link href="/src/css/styles.css" rel="stylesheet" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="/images/pagoda-logo.svg" />
+  </head>
+  <body class="antialiased bg-gray-900 text-gray-300">
+    {{> navbar }}
+
+    <main class="container mx-auto px-4 py-12 md:py-16">
+      <section class="max-w-4xl mx-auto">
+        <h1
+          class="text-3xl md:text-5xl font-bold text-white mb-6"
+          data-i18n="site:pages.licensing.title"
+        >
+          Licensing
+        </h1>
+        <p
+          class="text-lg text-gray-400 mb-8"
+          data-i18n="site:pages.licensing.intro"
+        >
+          PagodaPDF is released under AGPL-3.0-only. You may use, modify, and
+          share the project as open source software as long as you follow the
+          license terms.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-gray-800 border border-gray-700 rounded-lg p-6">
+            <h2
+              class="text-xl font-semibold text-white mb-3"
+              data-i18n="site:pages.licensing.sourceTitle"
+            >
+              AGPL-3.0 Source
+            </h2>
+            <p
+              class="text-gray-400"
+              data-i18n="site:pages.licensing.sourceDescription"
+            >
+              If you modify the app and offer it over a network, provide the
+              corresponding source code for your modified version.
+            </p>
+          </div>
+          <div class="bg-gray-800 border border-gray-700 rounded-lg p-6">
+            <h2
+              class="text-xl font-semibold text-white mb-3"
+              data-i18n="site:pages.licensing.noticesTitle"
+            >
+              Third-Party Notices
+            </h2>
+            <p
+              class="text-gray-400"
+              data-i18n="site:pages.licensing.noticesDescription"
+            >
+              Dependency and vendor package notices remain in the source tree
+              and should be kept when redistributing the project.
+            </p>
+          </div>
+        </div>
+
+        <p
+          class="mt-8 text-gray-500 text-sm"
+          data-i18n="site:pages.licensing.disclaimer"
+        >
+          This page is a project summary, not legal advice. Review the full
+          license text in the repository before publishing a modified build.
+        </p>
+      </section>
+    </main>
+
+    {{> footer }}
+    <script type="module" src="/src/js/utils/lucide-init.ts"></script>
+    <script type="module" src="/src/js/mobileMenu.ts"></script>
+    <script type="module" src="/src/js/main.ts"></script>
+  </body>
+</html>
