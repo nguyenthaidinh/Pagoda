@@ -347,7 +347,6 @@ function applyKnownTextTranslations(root: TranslationRoot): void {
         !value ||
         value === 'PagodaPDF' ||
         value === 'LioDev' ||
-        value === 'ntdinh16124@gmail.com' ||
         value === 'hotropagoda@liotnu.com'
       ) {
         return NodeFilter.FILTER_REJECT;

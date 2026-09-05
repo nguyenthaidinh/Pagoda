@@ -1,9 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: Security report
-    url: mailto:ntdinh16124@gmail.com
+    url: mailto:hotropagoda@liotnu.com
     about: Privately report an unpatched vulnerability. Do not attach sensitive files.
   - name: Project documentation
     url: https://github.com/nguyenthaidinh/Pagoda#readme
     about: Read setup, licensing, and deployment information.
-

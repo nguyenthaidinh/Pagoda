@@ -35,7 +35,7 @@ Examples of unacceptable behavior include:
 
 Project maintainers are responsible for enforcing these standards in all
 PagodaPDF project spaces. Report unacceptable behavior privately to
-`ntdinh16124@gmail.com`. Do not include confidential PDF documents unless the
+`hotropagoda@liotnu.com`. Do not include confidential PDF documents unless the
 maintainer explicitly requests a sanitized reproduction file.
 
 All complaints will be reviewed promptly and fairly. The maintainer must respect
@@ -48,4 +48,3 @@ version 2.1, available at [the official text][version].
 
 [homepage]: https://www.contributor-covenant.org
 [version]: https://www.contributor-covenant.org/version/2/1/code_of_conduct.html
-

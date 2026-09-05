@@ -266,10 +266,93 @@
       </div>
 
       <div class="hidden items-center gap-2 xl:flex">
-        <a href="{{baseUrl}}wasm-settings.html" class="nav-icon-link">
-          <i data-lucide="settings" class="h-4 w-4"></i>
-          <span data-i18n="settings.title">Settings</span>
-        </a>
+        <div class="nav-dropdown nav-settings-dropdown">
+          <button
+            type="button"
+            class="nav-link-button nav-icon-link nav-settings-trigger"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-label="Open settings menu"
+            data-i18n-aria-label="settings.openMenu"
+          >
+            <i data-lucide="settings" class="h-4 w-4"></i>
+            <span data-i18n="settings.title">Settings</span>
+            <i data-lucide="chevron-down" class="nav-chevron h-4 w-4"></i>
+          </button>
+
+          <div class="nav-mega nav-settings-menu" role="menu">
+            <div class="nav-settings-panel">
+              <p
+                class="nav-settings-heading"
+                data-i18n="settings.quickSettings"
+              >
+                Quick settings
+              </p>
+
+              <a
+                href="{{baseUrl}}index.html#settings-appearance"
+                class="nav-settings-item"
+                role="menuitem"
+                data-settings-open="appearance"
+              >
+                <span><i data-lucide="palette" class="h-4 w-4"></i></span>
+                <span>
+                  <strong data-i18n="settings.appearance">Appearance</strong>
+                  <small data-i18n="settings.appearanceNavDescription"
+                    >Theme, text and layout</small
+                  >
+                </span>
+              </a>
+
+              <a
+                href="{{baseUrl}}index.html#settings-shortcuts"
+                class="nav-settings-item"
+                role="menuitem"
+                data-settings-open="shortcuts"
+              >
+                <span><i data-lucide="keyboard" class="h-4 w-4"></i></span>
+                <span>
+                  <strong data-i18n="settings.shortcuts">Shortcuts</strong>
+                  <small data-i18n="settings.shortcutsNavDescription"
+                    >Open tools faster</small
+                  >
+                </span>
+              </a>
+
+              <a
+                href="{{baseUrl}}index.html#settings-language"
+                class="nav-settings-item"
+                role="menuitem"
+                data-settings-open="language"
+              >
+                <span><i data-lucide="languages" class="h-4 w-4"></i></span>
+                <span>
+                  <strong data-i18n="settings.language">Language</strong>
+                  <small data-i18n="settings.languageNavDescription"
+                    >Choose your language</small
+                  >
+                </span>
+              </a>
+
+              <a
+                href="{{baseUrl}}wasm-settings.html"
+                class="nav-settings-item nav-settings-item-advanced"
+                role="menuitem"
+              >
+                <span><i data-lucide="cpu" class="h-4 w-4"></i></span>
+                <span>
+                  <strong data-i18n="settings.advancedSettings"
+                    >Advanced Settings</strong
+                  >
+                  <small data-i18n="settings.advancedSettingsShortDescription"
+                    >Processing modules</small
+                  >
+                </span>
+                <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="flex items-center gap-3 xl:hidden">
@@ -382,9 +465,10 @@
 
       <div class="mt-4 grid grid-cols-2 gap-2">
         <a
-          href="{{baseUrl}}wasm-settings.html"
+          href="{{baseUrl}}index.html#settings-appearance"
           class="mobile-nav-link"
           data-i18n="settings.title"
+          data-settings-open="appearance"
           >Settings</a
         >
         <a

@@ -1,220 +1,376 @@
 <div
   id="shortcuts-modal"
-  class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
+  class="settings-modal-backdrop hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="settings-modal-title"
 >
-  <div
-    class="bg-gray-800 w-full max-w-2xl rounded-xl border border-gray-700 shadow-2xl flex flex-col max-h-[80vh]"
-  >
-    <div class="p-6 border-b border-gray-700 flex justify-between items-center">
-      <h3 class="text-xl font-bold text-white flex items-center gap-2">
-        <i data-lucide="settings" class="w-6 h-6 text-indigo-400"></i>
-        <span data-i18n="settings.title">Settings</span>
-      </h3>
+  <div class="settings-dialog flex w-full flex-col overflow-hidden">
+    <header class="settings-header flex items-center justify-between gap-4">
+      <div class="flex min-w-0 items-center gap-3">
+        <span class="settings-title-icon" aria-hidden="true">
+          <i data-lucide="settings" class="h-5 w-5"></i>
+        </span>
+        <div class="min-w-0">
+          <h2
+            id="settings-modal-title"
+            class="settings-title"
+            data-i18n="settings.title"
+          >
+            Settings
+          </h2>
+          <p class="settings-subtitle" data-i18n="settings.settingsAutoSaved">
+            Settings are automatically saved
+          </p>
+        </div>
+      </div>
       <button
         id="close-shortcuts-modal"
-        class="text-gray-400 hover:text-white transition-colors"
+        type="button"
+        class="settings-icon-button"
+        aria-label="Close settings"
+        data-i18n-aria-label="settings.close"
       >
-        <i data-lucide="x" class="w-6 h-6"></i>
+        <i data-lucide="x" class="h-5 w-5"></i>
       </button>
-    </div>
+    </header>
 
-    <!-- Tabs -->
-    <div class="flex border-b border-gray-700">
-      <button
-        id="shortcuts-tab-btn"
-        class="flex-1 py-3 text-sm font-medium bg-indigo-600 text-white"
+    <div class="settings-layout min-h-0 flex-1">
+      <nav
+        class="settings-navigation"
+        role="tablist"
+        aria-label="Settings sections"
+        data-i18n-aria-label="settings.sections"
       >
-        <i data-lucide="keyboard" class="inline-block w-4 h-4 mr-1"></i>
-        <span data-i18n="settings.shortcuts">Shortcuts</span>
-      </button>
-      <button
-        id="preferences-tab-btn"
-        class="flex-1 py-3 text-sm font-medium text-gray-300 hover:text-white"
-      >
-        <i data-lucide="sliders" class="inline-block w-4 h-4 mr-1"></i>
-        <span data-i18n="settings.preferences">Preferences</span>
-      </button>
-    </div>
-
-    <!-- Shortcuts Tab Content -->
-    <div id="shortcuts-tab-content" class="p-6 overflow-y-auto flex-grow">
-      <div class="flex justify-between items-center mb-6">
-        <div class="relative flex-grow mr-4">
-          <i
-            data-lucide="search"
-            class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500"
-          ></i>
-          <input
-            type="text"
-            id="shortcut-search"
-            data-i18n-placeholder="settings.searchShortcuts"
-            placeholder="Search shortcuts..."
-            class="w-full bg-gray-900 border border-gray-700 text-white rounded-lg pl-10 pr-4 py-2 focus:ring-indigo-500 focus:border-indigo-500"
-          />
-        </div>
-      </div>
-
-      <div
-        class="mb-4 p-3 bg-indigo-900/20 border border-indigo-500/30 rounded-lg flex items-start gap-3"
-      >
-        <i
-          data-lucide="info"
-          class="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5"
-        ></i>
-        <p class="text-sm text-indigo-200">
-          <span data-i18n="settings.shortcutsInfo"
-            >Press and hold keys to set a shortcut. Changes are
-            <strong>auto-saved</strong>.</span
-          >
-          <br /><span
-            class="text-yellow-300"
-            data-i18n="settings.shortcutsWarning"
-            >⚠️ Avoid common browser shortcuts (Cmd/Ctrl+W, Cmd/Ctrl+T,
-            Cmd/Ctrl+N etc.) as they may not work reliably.</span
-          >
-        </p>
-      </div>
-
-      <div id="shortcuts-list" class="space-y-2">
-        <!-- Shortcuts will be populated here -->
-      </div>
-    </div>
-
-    <!-- Preferences Tab Content -->
-    <div
-      id="preferences-tab-content"
-      class="hidden p-6 overflow-y-auto flex-grow"
-    >
-      <h4
-        class="text-lg font-semibold text-white mb-4"
-        data-i18n="settings.displayPreferences"
-      >
-        Display Preferences
-      </h4>
-
-      <div class="space-y-4">
-        <div
-          class="flex items-center justify-between p-4 bg-gray-900 rounded-lg border border-gray-700"
+        <button
+          id="preferences-tab-btn"
+          type="button"
+          class="settings-nav-item is-active"
+          role="tab"
+          aria-selected="true"
+          aria-controls="preferences-tab-content"
+          data-settings-tab="appearance"
         >
-          <div class="flex-1">
-            <label
-              for="full-width-toggle"
-              class="text-sm font-medium text-gray-200 cursor-pointer"
-              data-i18n="settings.fullWidthMode"
+          <i data-lucide="palette" class="h-5 w-5"></i>
+          <span>
+            <strong data-i18n="settings.appearance">Appearance</strong>
+            <small data-i18n="settings.appearanceNavDescription"
+              >Theme, text and layout</small
             >
-              Full Width Mode
-            </label>
-            <p
-              class="text-xs text-gray-400 mt-1"
-              data-i18n="settings.fullWidthDescription"
+          </span>
+        </button>
+
+        <button
+          id="shortcuts-tab-btn"
+          type="button"
+          class="settings-nav-item"
+          role="tab"
+          aria-selected="false"
+          aria-controls="shortcuts-tab-content"
+          tabindex="-1"
+          data-settings-tab="shortcuts"
+        >
+          <i data-lucide="keyboard" class="h-5 w-5"></i>
+          <span>
+            <strong data-i18n="settings.shortcuts">Shortcuts</strong>
+            <small data-i18n="settings.shortcutsNavDescription"
+              >Open tools faster</small
             >
-              Use the full screen width for all tools instead of a centered
-              container
+          </span>
+        </button>
+
+        <button
+          id="language-tab-btn"
+          type="button"
+          class="settings-nav-item"
+          role="tab"
+          aria-selected="false"
+          aria-controls="language-tab-content"
+          tabindex="-1"
+          data-settings-tab="language"
+        >
+          <i data-lucide="languages" class="h-5 w-5"></i>
+          <span>
+            <strong data-i18n="settings.language">Language</strong>
+            <small data-i18n="settings.languageNavDescription"
+              >Choose your language</small
+            >
+          </span>
+        </button>
+      </nav>
+
+      <div class="settings-content min-h-0 overflow-y-auto">
+        <section
+          id="preferences-tab-content"
+          role="tabpanel"
+          aria-labelledby="preferences-tab-btn"
+          data-settings-panel="appearance"
+        >
+          <div class="settings-section-heading">
+            <h3 data-i18n="settings.appearance">Appearance</h3>
+            <p data-i18n="settings.appearanceDescription">
+              Make PagodaPDF comfortable for your eyes and screen.
             </p>
           </div>
-          <label class="relative inline-flex items-center cursor-pointer ml-4">
-            <input
-              type="checkbox"
-              id="full-width-toggle"
-              class="sr-only peer"
-            />
-            <div
-              class="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"
-            ></div>
-          </label>
-        </div>
 
-        <div
-          class="flex items-center justify-between p-4 bg-gray-900 rounded-lg border border-gray-700"
-        >
-          <div class="flex-1">
-            <label
-              for="compact-mode-toggle"
-              class="text-sm font-medium text-gray-200 cursor-pointer"
-              data-i18n="settings.compactMode"
-            >
-              Compact Mode
-            </label>
-            <p
-              class="text-xs text-gray-400 mt-1"
-              data-i18n="settings.compactModeDescription"
-            >
-              Display tools as a compact list instead of cards
-            </p>
+          <div class="settings-group">
+            <div class="settings-control-row">
+              <div class="settings-control-copy">
+                <span class="settings-control-icon" aria-hidden="true">
+                  <i data-lucide="type" class="h-4 w-4"></i>
+                </span>
+                <div>
+                  <span
+                    class="settings-control-label"
+                    data-i18n="settings.fontSize"
+                    >Text size</span
+                  >
+                  <p data-i18n="settings.fontSizeDescription">
+                    Increase or decrease text across the website.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="settings-stepper"
+                role="group"
+                aria-label="Text size"
+                data-i18n-aria-label="settings.fontSize"
+              >
+                <button
+                  id="font-size-decrease"
+                  type="button"
+                  aria-label="Decrease text size"
+                  data-i18n-aria-label="settings.decreaseFontSize"
+                >
+                  <i data-lucide="minus" class="h-4 w-4"></i>
+                </button>
+                <output id="font-size-value" aria-live="polite">100%</output>
+                <button
+                  id="font-size-increase"
+                  type="button"
+                  aria-label="Increase text size"
+                  data-i18n-aria-label="settings.increaseFontSize"
+                >
+                  <i data-lucide="plus" class="h-4 w-4"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="settings-control-row">
+              <div class="settings-control-copy">
+                <span class="settings-control-icon" aria-hidden="true">
+                  <i data-lucide="sun-moon" class="h-4 w-4"></i>
+                </span>
+                <div>
+                  <span
+                    class="settings-control-label"
+                    data-i18n="settings.theme"
+                    >Theme</span
+                  >
+                  <p data-i18n="settings.themeDescription">
+                    Switch between light and dark appearance.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="settings-segmented-control"
+                role="group"
+                aria-label="Theme"
+                data-i18n-aria-label="settings.theme"
+              >
+                <button
+                  id="theme-light-btn"
+                  type="button"
+                  class="is-active"
+                  aria-pressed="true"
+                >
+                  <i data-lucide="sun" class="h-4 w-4"></i>
+                  <span data-i18n="settings.light">Light</span>
+                </button>
+                <button id="theme-dark-btn" type="button" aria-pressed="false">
+                  <i data-lucide="moon" class="h-4 w-4"></i>
+                  <span data-i18n="settings.dark">Dark</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="settings-control-row">
+              <div class="settings-control-copy">
+                <span class="settings-control-icon" aria-hidden="true">
+                  <i data-lucide="panel-top-open" class="h-4 w-4"></i>
+                </span>
+                <div>
+                  <label
+                    for="full-width-toggle"
+                    data-i18n="settings.fullWidthMode"
+                  >
+                    Full Width Mode
+                  </label>
+                  <p data-i18n="settings.fullWidthDescription">
+                    Use the full screen width for all tools instead of a
+                    centered container.
+                  </p>
+                </div>
+              </div>
+              <label class="settings-switch">
+                <input type="checkbox" id="full-width-toggle" />
+                <span aria-hidden="true"></span>
+              </label>
+            </div>
+
+            <div class="settings-control-row">
+              <div class="settings-control-copy">
+                <span class="settings-control-icon" aria-hidden="true">
+                  <i data-lucide="list" class="h-4 w-4"></i>
+                </span>
+                <div>
+                  <label
+                    for="compact-mode-toggle"
+                    data-i18n="settings.compactMode"
+                  >
+                    Compact Mode
+                  </label>
+                  <p data-i18n="settings.compactModeDescription">
+                    Display tools as a compact list instead of cards.
+                  </p>
+                </div>
+              </div>
+              <label class="settings-switch">
+                <input type="checkbox" id="compact-mode-toggle" />
+                <span aria-hidden="true"></span>
+              </label>
+            </div>
           </div>
-          <label class="relative inline-flex items-center cursor-pointer ml-4">
-            <input
-              type="checkbox"
-              id="compact-mode-toggle"
-              class="sr-only peer"
-            />
-            <div
-              class="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"
-            ></div>
-          </label>
-        </div>
 
-        <!-- Advanced Settings Link -->
-        <a
-          href="wasm-settings.html"
-          class="flex items-center justify-between p-4 bg-gray-900 rounded-lg border border-gray-700 hover:bg-gray-800 hover:border-indigo-500/50 transition-all group"
-        >
-          <div class="flex-1">
-            <span
-              class="text-sm font-medium text-gray-200 group-hover:text-white"
-              data-i18n="settings.advancedSettings"
-            >
-              Advanced Settings
+          <a href="wasm-settings.html" class="settings-advanced-link">
+            <span class="settings-control-icon" aria-hidden="true">
+              <i data-lucide="cpu" class="h-4 w-4"></i>
             </span>
-            <p
-              class="text-xs text-gray-400 mt-1"
-              data-i18n="settings.advancedSettingsDescription"
-            >
-              Configure external processing modules (PyMuPDF, Ghostscript,
-              CoherentPDF)
+            <span class="min-w-0 flex-1">
+              <strong data-i18n="settings.advancedSettings"
+                >Advanced Settings</strong
+              >
+              <small data-i18n="settings.advancedSettingsDescription">
+                Configure external processing modules (PyMuPDF, Ghostscript,
+                CoherentPDF)
+              </small>
+            </span>
+            <i data-lucide="chevron-right" class="h-5 w-5"></i>
+          </a>
+        </section>
+
+        <section
+          id="shortcuts-tab-content"
+          class="hidden"
+          role="tabpanel"
+          aria-labelledby="shortcuts-tab-btn"
+          data-settings-panel="shortcuts"
+        >
+          <div class="settings-section-heading">
+            <h3 data-i18n="settings.shortcuts">Shortcuts</h3>
+            <p data-i18n="settings.shortcutsDescription">
+              Assign key combinations to the tools you use most.
             </p>
           </div>
-          <i
-            data-lucide="chevron-right"
-            class="w-5 h-5 text-gray-500 group-hover:text-indigo-400 transition-colors"
-          ></i>
-        </a>
+
+          <div class="settings-search">
+            <i data-lucide="search" class="h-4 w-4"></i>
+            <input
+              type="search"
+              id="shortcut-search"
+              data-i18n-placeholder="settings.searchShortcuts"
+              placeholder="Search shortcuts..."
+            />
+          </div>
+
+          <div class="settings-info-note">
+            <i data-lucide="info" class="h-5 w-5"></i>
+            <p>
+              <span data-i18n="settings.shortcutsInfo"
+                >Press and hold keys to set a shortcut. Changes are
+                auto-saved.</span
+              >
+              <span data-i18n="settings.shortcutsWarning"
+                >Avoid common browser shortcuts because they may not work
+                reliably.</span
+              >
+            </p>
+          </div>
+
+          <div id="shortcuts-list" class="space-y-2"></div>
+        </section>
+
+        <section
+          id="language-tab-content"
+          class="hidden"
+          role="tabpanel"
+          aria-labelledby="language-tab-btn"
+          data-settings-panel="language"
+        >
+          <div class="settings-section-heading">
+            <h3 data-i18n="settings.language">Language</h3>
+            <p data-i18n="settings.languageDescription">
+              Choose the language used for menus, tools and instructions.
+            </p>
+          </div>
+
+          <div class="settings-language-picker">
+            <span class="settings-language-icon" aria-hidden="true">
+              <i data-lucide="languages" class="h-6 w-6"></i>
+            </span>
+            <div class="min-w-0 flex-1">
+              <label
+                for="settings-language-select"
+                data-i18n="settings.chooseLanguage"
+              >
+                Display language
+              </label>
+              <p data-i18n="settings.languageChangeDescription">
+                The current page will reload in the selected language.
+              </p>
+              <div class="settings-select-wrap">
+                <select id="settings-language-select"></select>
+                <i data-lucide="chevron-down" class="h-4 w-4"></i>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
 
-    <div
-      class="p-6 border-t border-gray-700 flex justify-between items-center bg-gray-850 rounded-b-xl"
-    >
-      <div id="shortcuts-tab-footer" class="flex gap-3">
+    <footer class="settings-footer">
+      <div id="shortcuts-tab-footer" class="hidden items-center gap-2">
         <button
           id="import-shortcuts-btn"
-          class="text-gray-400 hover:text-white text-sm font-medium flex items-center gap-1 transition-colors"
+          type="button"
+          class="settings-footer-action"
         >
-          <i data-lucide="upload" class="w-4 h-4"></i>
+          <i data-lucide="upload" class="h-4 w-4"></i>
           <span data-i18n="settings.import">Import</span>
         </button>
         <button
           id="export-shortcuts-btn"
-          class="text-gray-400 hover:text-white text-sm font-medium flex items-center gap-1 transition-colors"
+          type="button"
+          class="settings-footer-action"
         >
-          <i data-lucide="download" class="w-4 h-4"></i>
+          <i data-lucide="download" class="h-4 w-4"></i>
           <span data-i18n="settings.export">Export</span>
         </button>
       </div>
-      <div id="preferences-tab-footer" class="hidden w-full">
-        <p
-          class="text-xs text-gray-400 text-center"
-          data-i18n="settings.settingsAutoSaved"
+      <div id="preferences-tab-footer" class="settings-saved-note">
+        <i data-lucide="check" class="h-4 w-4"></i>
+        <span data-i18n="settings.settingsAutoSaved"
+          >Settings are automatically saved</span
         >
-          Settings are automatically saved
-        </p>
       </div>
       <button
         id="reset-shortcuts-btn"
-        class="text-red-400 hover:text-red-300 text-sm font-medium transition-colors"
+        type="button"
+        class="settings-reset-button hidden"
       >
+        <i data-lucide="rotate-ccw" class="h-4 w-4"></i>
         <span data-i18n="settings.resetToDefaults">Reset to Defaults</span>
       </button>
-    </div>
+    </footer>
   </div>
 </div>

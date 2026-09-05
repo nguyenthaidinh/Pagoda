@@ -8,7 +8,7 @@ may not receive fixes.
 ## Reporting A Vulnerability
 
 Do not open a public issue for an unpatched vulnerability. Email
-`ntdinh16124@gmail.com` with:
+`hotropagoda@liotnu.com` with:
 
 - A concise description and affected feature.
 - Reproduction steps using synthetic, non-sensitive files.
@@ -42,4 +42,3 @@ npm run build
 ```
 
 PagodaPDF is distributed without warranty under AGPL-3.0-only. See [LICENSE](LICENSE).
-

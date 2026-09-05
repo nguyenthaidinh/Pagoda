@@ -9,7 +9,7 @@ Use this checklist before the first full source push to
       `.npm-cache/`, `output/`, `tmp/`, local logs, and `.env.*` files.
 - [ ] Keep `LICENSE`, `NOTICE`, and upstream history links in
       `public/CHANGELOG.md`.
-- [ ] Confirm that `ntdinh16124@gmail.com` is the intended public security and
+- [ ] Confirm that `hotropagoda@liotnu.com` is the intended public security and
       support address.
 - [ ] Run `npm ci`, `npm run lint`, `npm run test:run`, and `npm run build`.
 - [ ] Configure DNS and HTTPS for `https://pagoda.liotnu.com/`.

@@ -14,8 +14,13 @@ import {
   rewriteLinks,
   observeTranslations,
   injectLanguageSwitcher,
+  changeLanguage,
+  getLanguageFromUrl,
+  languageNames,
+  supportedLanguages,
   t,
 } from './i18n/index.js';
+import type { SupportedLanguage } from './i18n/index.js';
 import {
   loadRuntimeConfig,
   isToolDisabled,
@@ -27,7 +32,20 @@ import {
   removeStoredItem,
 } from './utils/safe-storage.js';
 import { initFooterContact } from './utils/footer.js';
+import {
+  FONT_SCALE_MAX,
+  FONT_SCALE_MIN,
+  FONT_SCALE_STEP,
+  getFontScale,
+  getThemePreference,
+  initializeAppearancePreferences,
+  setFontScale,
+  setThemePreference,
+  type ThemePreference,
+} from './utils/appearance-preferences.js';
 declare const __BRAND_NAME__: string;
+
+initializeAppearancePreferences();
 
 const init = async () => {
   await initI18n();
@@ -567,12 +585,12 @@ const init = async () => {
   // Initialize Shortcuts System
   ShortcutsManager.init();
 
-  // Tab switching for settings modal
-  const shortcutsTabBtn = document.getElementById('shortcuts-tab-btn');
-  const preferencesTabBtn = document.getElementById('preferences-tab-btn');
-  const shortcutsTabContent = document.getElementById('shortcuts-tab-content');
-  const preferencesTabContent = document.getElementById(
-    'preferences-tab-content'
+  // Settings navigation and appearance controls
+  const settingsTabs = Array.from(
+    document.querySelectorAll<HTMLButtonElement>('[data-settings-tab]')
+  );
+  const settingsPanels = Array.from(
+    document.querySelectorAll<HTMLElement>('[data-settings-panel]')
   );
   const shortcutsTabFooter = document.getElementById('shortcuts-tab-footer');
   const preferencesTabFooter = document.getElementById(
@@ -580,31 +598,126 @@ const init = async () => {
   );
   const resetShortcutsBtn = document.getElementById('reset-shortcuts-btn');
 
-  if (shortcutsTabBtn && preferencesTabBtn) {
-    shortcutsTabBtn.addEventListener('click', () => {
-      shortcutsTabBtn.classList.add('bg-indigo-600', 'text-white');
-      shortcutsTabBtn.classList.remove('text-gray-300');
-      preferencesTabBtn.classList.remove('bg-indigo-600', 'text-white');
-      preferencesTabBtn.classList.add('text-gray-300');
-      shortcutsTabContent?.classList.remove('hidden');
-      preferencesTabContent?.classList.add('hidden');
-      shortcutsTabFooter?.classList.remove('hidden');
-      preferencesTabFooter?.classList.add('hidden');
-      resetShortcutsBtn?.classList.remove('hidden');
+  const activateSettingsPanel = (panelName: string) => {
+    settingsTabs.forEach((tab) => {
+      const isActive = tab.dataset.settingsTab === panelName;
+      tab.classList.toggle('is-active', isActive);
+      tab.setAttribute('aria-selected', isActive.toString());
+      tab.tabIndex = isActive ? 0 : -1;
     });
 
-    preferencesTabBtn.addEventListener('click', () => {
-      preferencesTabBtn.classList.add('bg-indigo-600', 'text-white');
-      preferencesTabBtn.classList.remove('text-gray-300');
-      shortcutsTabBtn.classList.remove('bg-indigo-600', 'text-white');
-      shortcutsTabBtn.classList.add('text-gray-300');
-      preferencesTabContent?.classList.remove('hidden');
-      shortcutsTabContent?.classList.add('hidden');
-      preferencesTabFooter?.classList.remove('hidden');
-      shortcutsTabFooter?.classList.add('hidden');
-      resetShortcutsBtn?.classList.add('hidden');
+    settingsPanels.forEach((panel) => {
+      panel.classList.toggle(
+        'hidden',
+        panel.dataset.settingsPanel !== panelName
+      );
+    });
+
+    const showsShortcutActions = panelName === 'shortcuts';
+    shortcutsTabFooter?.classList.toggle('hidden', !showsShortcutActions);
+    shortcutsTabFooter?.classList.toggle('flex', showsShortcutActions);
+    preferencesTabFooter?.classList.toggle('hidden', showsShortcutActions);
+    resetShortcutsBtn?.classList.toggle('hidden', !showsShortcutActions);
+  };
+
+  settingsTabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+      activateSettingsPanel(tab.dataset.settingsTab ?? 'appearance');
+    });
+
+    tab.addEventListener('keydown', (event) => {
+      if (
+        !['ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight'].includes(event.key)
+      ) {
+        return;
+      }
+      event.preventDefault();
+      const goesForward =
+        event.key === 'ArrowDown' || event.key === 'ArrowRight';
+      const nextIndex =
+        (index + (goesForward ? 1 : -1) + settingsTabs.length) %
+        settingsTabs.length;
+      const nextTab = settingsTabs[nextIndex];
+      activateSettingsPanel(nextTab.dataset.settingsTab ?? 'appearance');
+      nextTab.focus();
+    });
+  });
+
+  const fontSizeDecrease = document.getElementById(
+    'font-size-decrease'
+  ) as HTMLButtonElement | null;
+  const fontSizeIncrease = document.getElementById(
+    'font-size-increase'
+  ) as HTMLButtonElement | null;
+  const fontSizeValue = document.getElementById('font-size-value');
+  const themeLightButton = document.getElementById(
+    'theme-light-btn'
+  ) as HTMLButtonElement | null;
+  const themeDarkButton = document.getElementById(
+    'theme-dark-btn'
+  ) as HTMLButtonElement | null;
+
+  const updateAppearanceControls = () => {
+    const fontScale = getFontScale();
+    if (fontSizeValue) {
+      fontSizeValue.textContent = `${Math.round(fontScale * 100)}%`;
+    }
+    if (fontSizeDecrease) {
+      fontSizeDecrease.disabled = fontScale <= FONT_SCALE_MIN;
+    }
+    if (fontSizeIncrease) {
+      fontSizeIncrease.disabled = fontScale >= FONT_SCALE_MAX;
+    }
+
+    const theme = getThemePreference();
+    [themeLightButton, themeDarkButton].forEach((button) => {
+      if (!button) return;
+      const isActive = button.id === `theme-${theme}-btn`;
+      button.classList.toggle('is-active', isActive);
+      button.setAttribute('aria-pressed', isActive.toString());
+    });
+  };
+
+  const changeFontScale = (delta: number) => {
+    setFontScale(getFontScale() + delta);
+    updateAppearanceControls();
+  };
+
+  fontSizeDecrease?.addEventListener('click', () => {
+    changeFontScale(-FONT_SCALE_STEP);
+  });
+  fontSizeIncrease?.addEventListener('click', () => {
+    changeFontScale(FONT_SCALE_STEP);
+  });
+
+  const chooseTheme = (theme: ThemePreference) => {
+    setThemePreference(theme);
+    updateAppearanceControls();
+  };
+  themeLightButton?.addEventListener('click', () => chooseTheme('light'));
+  themeDarkButton?.addEventListener('click', () => chooseTheme('dark'));
+
+  const languageSelect = document.getElementById(
+    'settings-language-select'
+  ) as HTMLSelectElement | null;
+  if (languageSelect) {
+    supportedLanguages.forEach((language) => {
+      const option = document.createElement('option');
+      option.value = language;
+      option.textContent = languageNames[language];
+      languageSelect.appendChild(option);
+    });
+    languageSelect.value = getLanguageFromUrl();
+    languageSelect.addEventListener('change', () => {
+      const language = languageSelect.value as SupportedLanguage;
+      if (supportedLanguages.includes(language)) {
+        changeLanguage(language);
+      }
     });
   }
+
+  activateSettingsPanel('appearance');
+  updateAppearanceControls();
 
   // Full-width toggle functionality
   const fullWidthToggle = document.getElementById(
@@ -683,25 +796,116 @@ const init = async () => {
     });
   }
 
-  // Shortcuts UI Handlers
+  // Settings modal handlers
+  let settingsTrigger: HTMLElement | null = null;
+  const settingsPanelNames = ['appearance', 'shortcuts', 'language'];
+
+  const openSettingsModal = (
+    panelName = 'appearance',
+    trigger: HTMLElement | null = null
+  ) => {
+    if (!dom.shortcutsModal) return;
+    const selectedPanel = settingsPanelNames.includes(panelName)
+      ? panelName
+      : 'appearance';
+
+    if (selectedPanel === 'shortcuts') {
+      renderShortcutsList();
+    }
+    activateSettingsPanel(selectedPanel);
+    updateAppearanceControls();
+    settingsTrigger = trigger;
+    dom.shortcutsModal.classList.remove('hidden');
+    document.body.classList.add('settings-open');
+    requestAnimationFrame(() => {
+      settingsTabs
+        .find((tab) => tab.dataset.settingsTab === selectedPanel)
+        ?.focus();
+    });
+  };
+
+  const closeSettingsModal = () => {
+    if (!dom.shortcutsModal) return;
+    dom.shortcutsModal.classList.add('hidden');
+    document.body.classList.remove('settings-open');
+    settingsTrigger?.focus();
+    if (window.location.hash.startsWith('#settings-')) {
+      history.replaceState(
+        null,
+        '',
+        `${window.location.pathname}${window.location.search}`
+      );
+    }
+  };
+
   if (dom.openShortcutsBtn) {
     dom.openShortcutsBtn.addEventListener('click', () => {
-      renderShortcutsList();
-      dom.shortcutsModal.classList.remove('hidden');
+      openSettingsModal('appearance', dom.openShortcutsBtn);
     });
+  }
+
+  document
+    .querySelectorAll<HTMLElement>('[data-settings-open]')
+    .forEach((link) => {
+      link.addEventListener('click', (event) => {
+        if (!dom.shortcutsModal) return;
+        event.preventDefault();
+        const panelName = link.dataset.settingsOpen ?? 'appearance';
+        history.replaceState(null, '', `#settings-${panelName}`);
+        openSettingsModal(panelName, link);
+
+        const dropdown = link.closest('.nav-dropdown');
+        dropdown?.classList.remove('is-open');
+        dropdown
+          ?.querySelector<HTMLButtonElement>('[aria-expanded]')
+          ?.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+  const requestedSettingsPanel = window.location.hash.match(
+    /^#settings-(appearance|shortcuts|language)$/
+  )?.[1];
+  if (requestedSettingsPanel && dom.shortcutsModal) {
+    openSettingsModal(requestedSettingsPanel);
   }
 
   if (dom.closeShortcutsModalBtn) {
-    dom.closeShortcutsModalBtn.addEventListener('click', () => {
-      dom.shortcutsModal.classList.add('hidden');
-    });
+    dom.closeShortcutsModalBtn.addEventListener('click', closeSettingsModal);
   }
 
-  // Close modal on outside click
   if (dom.shortcutsModal) {
     dom.shortcutsModal.addEventListener('click', (e) => {
       if (e.target === dom.shortcutsModal) {
-        dom.shortcutsModal.classList.add('hidden');
+        closeSettingsModal();
+      }
+    });
+
+    dom.shortcutsModal.addEventListener('keydown', (event) => {
+      if (
+        event.key === 'Escape' &&
+        (!dom.warningModal || dom.warningModal.classList.contains('hidden'))
+      ) {
+        event.preventDefault();
+        closeSettingsModal();
+        return;
+      }
+
+      if (event.key !== 'Tab') return;
+      const focusableElements = Array.from(
+        dom.shortcutsModal.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter((element) => !element.closest('.hidden'));
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements.at(-1);
+      if (!firstElement || !lastElement) return;
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
       }
     });
   }
@@ -1106,7 +1310,10 @@ const init = async () => {
           // If the user releases a modifier without pressing a main key, revert to saved
           const key = e.key.toLowerCase();
           if (['control', 'shift', 'alt', 'meta'].includes(key)) {
-            const currentSaved = ShortcutsManager.getShortcut(toolId);
+            input.value = formatShortcutDisplay(
+              ShortcutsManager.getShortcut(toolId) || '',
+              isMac
+            );
           }
         };
 

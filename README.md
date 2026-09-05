@@ -92,4 +92,4 @@ Các thông báo bản quyền và giấy phép của dự án gốc, dependency
 ## Liên hệ
 
 - GitHub Issues: https://github.com/nguyenthaidinh/Pagoda/issues
-- Email: ntdinh16124@gmail.com
+- Email: hotropagoda@liotnu.com
